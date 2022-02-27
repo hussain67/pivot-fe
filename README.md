@@ -5,18 +5,24 @@ npm i axios
 npm i socket.io-client 
 npm install @mui/material @emotion/react @emotion/styled
 npm install @mui/icons-material
-npm install react-responsive-carousel
+npm install react-responsive-carousel   - removed
 npm install qrcode.react
+npm install --save react-google-charts
+npm install react-icons  - removed
 
 
 # Repos
 https://github.com/isle88/pivot-frontend                       --student
 https://github.com/roshnig/pivot-frontend-teacher.git          --teacher
-https://git.heroku.com/rhs-pivot-backend.git                   --backend
 
 # Hosted version
-https://rhs-pivot-backend.herokuapp.com/
-https://pivot-fe.netlify.app/
+https://pivot1.herokuapp.com/api/results                      --backend
+https://pivot-fe.netlify.app/                                 --student
+
+# not using 
+//https://git.heroku.com/rhs-pivot-backend.git                   --backend
+//https://rhs-pivot-backend.herokuapp.com/                       --backend
+
 
 # Getting Started with Create React App
 

@@ -1,19 +1,23 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { Carousel } from "react-responsive-carousel";
 import CircularLoader from "./CircularLoader";
 import { getSlides } from "../utils/api";
 import Footer from "./Footer";
+import ImageCarousel from "./ImageCarousel";
 var QRCode = require('qrcode.react');
 
-const MainSection = () => {
+const MainSection = ({ socket }) => {
     const [slides, setSlides] = useState([]);
     const [slide_id, setSlideId] = useState('');
     const [isLoading, setIsLoading] = useState(true);
+    const [session, setSession] = useState('');
     const { presentation_id } = useParams();
+    const [url, setUrl] = useState('')
+    const [current, setCurrent] = useState(0);
+
 
     useEffect(() => {
-        console.log(presentation_id)
+        let currentTime = Date.now();
         const slideImgs = [
             {
                 slide_image_url: "https://image.shutterstock.com/image-photo/large-drop-water-reflects-environment-260nw-1917029711.jpg",
@@ -29,8 +33,11 @@ const MainSection = () => {
             }
         ]
         setSlides(slideImgs);
-        setSlideId(slideImgs[0].slide_id)
+        setSlideId(slideImgs[0].slide_id);
+        setSession(`${presentation_id}-${slideImgs[0].slide_id}-${currentTime}`)
+        setUrl(`https://pivot-fe.netlify.app/${presentation_id}-${slideImgs[0].slide_id}-${currentTime}`)
         setIsLoading(false);
+        socket.emit('current_session', `${presentation_id}-${slideImgs[0].slide_id}-${currentTime}`);
 
         // getSlides(presentation_id)
         // .then((res) => {
@@ -42,30 +49,33 @@ const MainSection = () => {
         // })
     }, [presentation_id]);
 
+    console.log(session)
+
     return isLoading ? (
         <CircularLoader></CircularLoader>
     ) : (
         <div>
             <div className="maindiv">
                 <div className="slides_div">
-                    <Carousel>
-                        {slides.map((slide) => {
-                            return (
-                                <div key={slide.slide_id}>
-                                    <img alt="" src={slide.slide_image_url} />
-                                </div>
-                            )
-                        })}
-                    </Carousel>
+                    <ImageCarousel slides={slides} current={current}></ImageCarousel>
                 </div>
 
                 <div className="qr_div">
-                    <p>https://pivot-fe.netlify.app/</p>
-                    <QRCode className='qr_code' value="https://pivot-fe.netlify.app/" />
+                    <p>{url}</p>
+                    <QRCode className='qr_code' value={url} />
                 </div>
             </div>
-            <Footer presentation_id={presentation_id} slide_id={slide_id}></Footer>
-            {/* <Footer></Footer> */}
+            <Footer
+                presentation_id={presentation_id}
+                setSlideId={setSlideId}
+                current={current}
+                setCurrent={setCurrent}
+                slides={slides}
+                slide_id={slide_id}
+                setSession={setSession}
+                setUrl={setUrl}
+                socket={socket}
+            ></Footer>
         </div>
     )
 }
