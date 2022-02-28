@@ -3,15 +3,15 @@ import { Chart } from "react-google-charts";
 
 
 const PollChart = (props) => {
-    const data = props.responseData;
+    // const data = props.responseData;
 
-    // const data = [
-    //     ["Answer", "Response"],
-    //     ["A", 10],
-    //     ["B", 12],
-    //     ["C", 5],
-    //     ["D", 2]
-    // ]
+    const data = [
+        ["Answer", "Response"],
+        ["A", 10],
+        ["B", 12],
+        ["C", 5],
+        ["D", 2]
+    ]
 
     const options = {
         title: "Poll Results",

@@ -6,10 +6,10 @@ import Results from "./components/Results";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import io from "socket.io-client";
 
-const socket = io.connect("http://localhost:3002")
+const socket = io.connect("http://localhost:9090")
 
 function App() {
-  const [presentation_id, setPresentationId] = useState('');
+  const [sessionId, setSessionId] = useState('');
   const [responseData, setResponseData] = useState([["Answer", "Response"], ["A", 10]]);
 
   return (
@@ -18,20 +18,20 @@ function App() {
         <Header></Header>
         <Routes>
           <Route
-            path="/presentations/:presentation_id"
+            path="/presentations/:sessionId"
             element={
               <MainSection
                 socket={socket}
-                setPresentationId={setPresentationId}
-                presentation_id={presentation_id}
+                setSessionId={setSessionId}
+                sessionId={sessionId}
                 setResponseData={setResponseData}>
               </MainSection>}>
           </Route>
           <Route
-            path="/presentations/:presentation_id/responses"
+            path="/presentations/:sessionId/responses/:slideId"
             element={
               <Results
-                presentation_id={presentation_id}
+                sessionId={sessionId}
                 responseData={responseData}>
               </Results>}>
           </Route>
@@ -43,3 +43,38 @@ function App() {
 }
 
 export default App;
+
+
+// function App() {
+//   const [presentation_id, setPresentationId] = useState('');
+//   const [responseData, setResponseData] = useState([["Answer", "Response"], ["A", 10]]);
+
+//   return (
+//     <BrowserRouter>
+//       <div className="App">
+//         <Header></Header>
+//         <Routes>
+//           <Route
+//             path="/presentations/:presentation_id"
+//             element={
+//               <MainSection
+//                 socket={socket}
+//                 setPresentationId={setPresentationId}
+//                 presentation_id={presentation_id}
+//                 setResponseData={setResponseData}>
+//               </MainSection>}>
+//           </Route>
+//           <Route
+//             path="/presentations/:presentation_id/responses"
+//             element={
+//               <Results
+//                 presentation_id={presentation_id}
+//                 responseData={responseData}>
+//               </Results>}>
+//           </Route>
+//           <Route path="*" element={<p className='notFound'>Page Not Found !!</p>} />
+//         </Routes>
+//       </div>
+//     </BrowserRouter>
+//   );
+// }
