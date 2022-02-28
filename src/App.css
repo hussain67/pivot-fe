@@ -58,28 +58,6 @@
   border-radius: 10px;
   margin-top: 0px;
 } 
-/* 
-.right-arrow{
-  position: absolute;
-  top: 50%;
-  right: 32px;
-  font-size: 3rem;
-  color: #000;
-  z-index: 10;
-  cursor: pointer;
-  user-select: none;
-}
-
-.left-arrow {
-  position: absolute;
-  top: 50%;
-  left: 32px;
-  font-size: 3rem;
-  color: #000;
-  z-index: 10;
-  cursor: pointer;
-  user-select: none;
-} */
 
 /* ************** QR Div *****************/
  .qr_div {
@@ -126,6 +104,11 @@
   text-decoration: none;
   color: white;
   
+}
+
+/* ******* Result ****** */
+.result_maindiv {
+  margin-top: 50px;
 }
 
 /* ****************  Responsiveness (for mobile devices)**************** */

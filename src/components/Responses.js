@@ -1,14 +1,21 @@
 import React, { useEffect, useState } from "react";
 
-const Responses = ({ socket }) => {
+const Responses = ({ socket, setResponseData }) => {
     const [noOfRes, setNoOfResponses] = useState(0);
+    // const [responseData, setResponseData] = useState([])
 
-    // useEffect(() => {
-    //     socket.on('receive_message', (data) => {
-    //         //console.log(data);
-    //         setNoOfResponses(data)
-    //     })
-    // }, [noOfRes]);
+    useEffect(() => {
+        let resdata = ["B", 12]
+        socket.on('receive_message', (resdata) => {
+            //console.log(resdata);
+            setResponseData((currData) => {
+                return [...currData, resdata]
+            })
+            setNoOfResponses((curr) => {
+                return curr + 1;
+            })
+        })
+    }, [noOfRes]);
 
     return (
         <div>

@@ -18,6 +18,7 @@ https://github.com/roshnig/pivot-frontend-teacher.git          --teacher
 # Hosted version
 https://pivot1.herokuapp.com/api/results                      --backend
 https://pivot-fe.netlify.app/                                 --student
+https://pivot-fe-presenter.netlify.app                       -- teacher
 
 # not using 
 //https://git.heroku.com/rhs-pivot-backend.git                   --backend

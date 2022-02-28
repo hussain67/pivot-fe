@@ -6,7 +6,7 @@ import Footer from "./Footer";
 import ImageCarousel from "./ImageCarousel";
 var QRCode = require('qrcode.react');
 
-const MainSection = ({ socket }) => {
+const MainSection = ({ socket, setPresentationId, setResponseData }) => {
     const [slides, setSlides] = useState([]);
     const [slide_id, setSlideId] = useState('');
     const [isLoading, setIsLoading] = useState(true);
@@ -32,6 +32,7 @@ const MainSection = ({ socket }) => {
                 slide_id: "3"
             }
         ]
+        setPresentationId(presentation_id)
         setSlides(slideImgs);
         setSlideId(slideImgs[0].slide_id);
         setSession(`${presentation_id}-${slideImgs[0].slide_id}-${currentTime}`)
@@ -49,7 +50,7 @@ const MainSection = ({ socket }) => {
         // })
     }, [presentation_id]);
 
-    console.log(session)
+    //console.log(session)
 
     return isLoading ? (
         <CircularLoader></CircularLoader>
@@ -75,6 +76,7 @@ const MainSection = ({ socket }) => {
                 setSession={setSession}
                 setUrl={setUrl}
                 socket={socket}
+                setResponseData={setResponseData}
             ></Footer>
         </div>
     )

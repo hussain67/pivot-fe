@@ -3,7 +3,19 @@ import { Link } from "react-router-dom";
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 
-const Footer = ({ presentation_id, slide_id, setSlideId, current, setCurrent, slides, socket, setSession, setUrl }) => {
+const Footer = ({
+    presentation_id,
+    slide_id,
+    setSlideId,
+    current,
+    setCurrent,
+    slides,
+    socket,
+    setSession,
+    setUrl,
+    setResponseData
+}) => {
+
     const length = slides.length;
     function prevSlide() {
         let currentTime = Date.now();
@@ -36,7 +48,12 @@ const Footer = ({ presentation_id, slide_id, setSlideId, current, setCurrent, sl
                 <ArrowForwardIosIcon onClick={nextSlide}></ArrowForwardIosIcon>
 
             </div>
-            <Responses socket={socket} presentation_id={presentation_id} slide_id={slide_id}></Responses>
+            <Responses
+                socket={socket}
+                presentation_id={presentation_id}
+                slide_id={slide_id}
+                setResponseData={setResponseData}>
+            </Responses>
             <Link
                 className="show_res_link"
                 to={`/presentations/${presentation_id}/responses`}
