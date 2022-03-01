@@ -1,5 +1,6 @@
 import './App.css';
 import React, { useState } from "react";
+//import { useParams } from "react-router-dom";
 import Header from "./components/Header";
 import MainSection from "./components/MainSection";
 import Results from "./components/Results";
@@ -7,6 +8,8 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import io from "socket.io-client";
 
 const socket = io.connect("http://localhost:9090")
+//const socket = io(process.env.REACT_APP_SOCKET_URL)
+console.log(io(process.env.REACT_APP_SOCKET_URL))
 
 function App() {
   const [sessionId, setSessionId] = useState('');
@@ -23,7 +26,7 @@ function App() {
               <MainSection
                 socket={socket}
                 setSessionId={setSessionId}
-                sessionId={sessionId}
+                // sessionId={sessionId}
                 setResponseData={setResponseData}>
               </MainSection>}>
           </Route>
