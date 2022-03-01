@@ -1,11 +1,24 @@
 import React, { useEffect, useState } from "react";
 
-const Responses = ({ socket }) => {
+const Responses = ({ socket, setResponseData }) => {
     const [noOfRes, setNoOfResponses] = useState(0);
 
+    // useEffect(() => {
+    //     socket.on('response_count', (resdata) => {
+    //         console.log(resdata, 'no of responses');  // new_response
+    //         setNoOfResponses((curr) => {
+    //             return curr + 1;
+    //         })
+    //     })
+    // }, [noOfRes, socket]);
+
     useEffect(() => {
-        socket.on('response_count', (resdata) => {
-            console.log(resdata, 'no of responses');
+        let resdata = ["B", 12]
+        socket.on('new_response', (resdata) => {
+            console.log(resdata, '<<new submission from student');
+            setResponseData((currData) => {
+                return [...currData, resdata]
+            })
             setNoOfResponses((curr) => {
                 return curr + 1;
             })

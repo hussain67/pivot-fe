@@ -18,16 +18,16 @@ const Footer = ({
 
     const length = slides.length;
 
-    useEffect(() => {
-        let resdata = ["B", 12]
-        socket.on('current_slide_responses', (resdata) => {
-            //console.log(resdata);
-            setResponseData((currData) => {
-                return [...currData, resdata]
-                //return resdata;
-            })
-        })
-    }, [slideId]);
+    // useEffect(() => {
+    //     let resdata = ["B", 12]
+    //     socket.on('current_slide_responses', (resdata) => {
+    //         //console.log(resdata);
+    //         setResponseData((currData) => {
+    //             return [...currData, resdata]
+    //             //return resdata;
+    //         })
+    //     })
+    // }, [slideId]);
 
     function prevSlide() {
         let newSlide_id = current === 0 ? slides[length - 1].slideId : slides[current - 1].slideId;
@@ -65,6 +65,7 @@ const Footer = ({
             </div>
             <Responses
                 socket={socket}
+                setResponseData={setResponseData}
             // presentationId={presentationId}
             // slideId={slideId}
             // sessionId={sessionId}
