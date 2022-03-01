@@ -7,9 +7,20 @@ import Results from "./components/Results";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import io from "socket.io-client";
 
-const socket = io.connect("http://localhost:9090")
-//const socket = io(process.env.REACT_APP_SOCKET_URL)
-console.log(io(process.env.REACT_APP_SOCKET_URL))
+//const socket = io.connect("http://localhost:9090")
+let socket = io.connect("https://rhs-pivot-backend.herokuapp.com");
+
+if (!process.env.NODE_ENV || process.env.NODE_ENV === 'development') {
+  // dev code
+  socket = io.connect("http://localhost:9090")
+  console.log('9090 connection')
+} else {
+  // production code
+  socket = io.connect("https://rhs-pivot-backend.herokuapp.com")
+  console.log('backend deployed port')
+}
+
+console.log(socket)
 
 function App() {
   const [sessionId, setSessionId] = useState('');
