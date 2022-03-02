@@ -6,7 +6,6 @@ const pivotApi = axios.create({
 
 export const getSlides = (sessionId) => {
     return pivotApi.get(`/presentations/${sessionId}`).then(res => {
-        console.log(res);
         return res.data.presentation;
     })
 }
