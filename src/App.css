@@ -5,30 +5,44 @@
   width: 100%;
   display: flex;
   flex-direction: column;
-  justify-content:flex-start;
+  justify-content: flex-start;
 }
 
 .notFound {
-  margin:10rem auto;
+  margin: 10rem auto;
   font-size: xx-large;
 }
 /* *********** Header ************* */
-.header {
+.Header {
   background-color: #333;
-  display:flex;
+  display: flex;
   height: 50px;
   justify-content: space-between;
   align-items: center;
   color: white;
-  width:100%;
-  position: fixed;  
+  width: 100%;
+  position: fixed;
+}
+
+.Header-main_header {
+  margin-left: 1em;
+}
+
+.Header-session_id {
+  margin-right: 1em;
+  font-size: 1.3em;
+  cursor: pointer;
+}
+
+.Header-session_id:hover {
+  color: yellow;
 }
 
 /* *********** Main Div ************* */
 .maindiv {
-  width:100%;
+  width: 100%;
   max-height: 80vh;
-  display:flex;
+  display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
@@ -44,7 +58,7 @@
 }
 
 .slider {
-  position:relative;
+  position: relative;
   height: 70vh;
   display: flex;
   justify-content: center;
@@ -57,35 +71,36 @@
   /* height: 600px; */
   border-radius: 10px;
   margin-top: 0px;
-} 
+  z-index: -1;
+}
 
 /* ************** QR Div *****************/
- .qr_div {
-   display: flex;
-   flex-direction: column;
-   font-size: medium;
-   font-weight: bold;
-   justify-items: flex-start;
-   margin-top: 0;
-   padding-right: 3%;
- }
+.qr_div {
+  display: flex;
+  flex-direction: column;
+  font-size: medium;
+  font-weight: bold;
+  justify-items: flex-start;
+  margin-top: 0;
+  padding-right: 3%;
+}
 
- .qr_div p {
-   margin-top: 2%;
- }
+.qr_div p {
+  margin-top: 2%;
+}
 
- .qr_code {
-   margin-left: 30%;
- }
+.qr_code {
+  margin-left: 30%;
+}
 
 /* *********** Footer ************* */
 .footer {
   background-color: #333;
-  display:flex;
+  display: flex;
   justify-content: space-around;
   align-items: center;
   color: white;
-  width:100%;    
+  width: 100%;
   bottom: 0;
   position: absolute;
   height: 50px;
@@ -103,18 +118,16 @@
 .show_res_link {
   text-decoration: none;
   color: white;
-  
 }
-
 
 /* ******* Result ****** */
 .result_maindiv {
   margin-top: 100px;
   display: flex;
-  flex-wrap: wrap; 
+  flex-wrap: wrap;
   flex-direction: column;
   max-width: 80vw;
-  
+
   justify-content: center;
   justify-items: center;
   align-content: center;
@@ -122,22 +135,19 @@
   /* //margin: 100px 50px; */
 }
 
-.master_result{
+.master_result {
   display: flex;
   margin-top: 50px;
   justify-content: space-between;
 }
 
-.result_chart{
+.result_chart {
   margin-left: 400px;
 }
 
 .answer_div {
   margin-top: 100px;
 }
-
-
-
 
 /* ****************  Responsiveness (for mobile devices)**************** */
 @media screen and (min-width: 1200px) {
@@ -160,7 +170,7 @@
   .qr_div {
     font-size: xx-large;
   }
-  .slider{
+  .slider {
     height: 80vh;
   }
   .image {
@@ -170,6 +180,42 @@
     margin-top: 12vh;
     margin-left: 3%;
   }
- }
+}
 
- 
+/* The Modal (background) */
+.Modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0, 0, 0); /* Fallback color */
+  background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal-content {
+  background-color: #fefefe;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 20%;
+}
+
+.modal-close {
+  color: #aaaaaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.modal-close:hover,
+.modal-close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
