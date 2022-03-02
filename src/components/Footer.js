@@ -19,6 +19,7 @@ const Footer = ({
 
     const [noOfRes, setNoOfResponses] = useState(0);
     const [pollActive, setPollActive] = useState(false);
+    const [pollStopped, setPollStopped] = useState(false);
     const [hasQuestion, setHasQuestion] = useState(false);
     const { sessionId } = useParams();
 
@@ -59,6 +60,7 @@ const Footer = ({
             setCorrectAnswer(currSlide[0].question.correctAnswer);
             setNoOfResponses(0);
             setPollActive(false);
+            setPollStopped(false);
             setResponseData((curr) => {
                 return []
             })
@@ -87,7 +89,8 @@ const Footer = ({
         if (currSlide[0].question.hasQuestion) {
             setCorrectAnswer(currSlide[0].question.correctAnswer)
             setNoOfResponses(0);
-            setPollActive(false)
+            setPollActive(false);
+            setPollStopped(false);
             setResponseData((curr) => {
                 return []
             })
@@ -106,7 +109,6 @@ const Footer = ({
 
     useEffect(() => {
         socket.on('new_response', (resdata) => {
-            console.log(resdata, '<<new submission from student');
             setResponseData((currData) => {
                 const newRes = currData.map((studentRes) => {
                     return { ...studentRes }
@@ -123,7 +125,6 @@ const Footer = ({
                 for (let j = 0; j < newChartData.length; j++) {
                     if (newChartData[j][0] === answer) {
                         let currCount = newChartData[j][1];
-                        console.log(currCount, '<<currcount')
                         currCount = currCount + 1;
                         newChartData[j] = [answer, currCount];
                         break;
@@ -145,6 +146,7 @@ const Footer = ({
 
     function handleStopClick() {
         socket.emit('teacher_slide_stop', slideId);
+        setPollStopped(true)
     }
 
     return (
@@ -161,13 +163,13 @@ const Footer = ({
                 }
             </div>
             {(hasQuestion) &&
-                <button onClick={handleStartClick}>Start</button>
+                <button className='poll_btns' onClick={handleStartClick}>Start Poll</button>
             }
             {(hasQuestion) &&
-                <button onClick={handleStopClick}>Stop</button>
+                <button className='poll_btns' onClick={handleStopClick}>Stop Poll</button>
             }
 
-            {(hasQuestion && pollActive) &&
+            {(hasQuestion && pollActive && pollStopped) &&
                 <Link
                     className="show_res_link"
                     to={`/presentations/${sessionId}/responses/${slideId}`}
