@@ -31,6 +31,7 @@ function App() {
                 responseData={responseData}
                 setResponseData={setResponseData}
                 setChartData={setChartData}
+                chartData={chartData}
                 setCorrectAnswer={setCorrectAnswer}
                 setImage={setImage}
               ></MainSection>

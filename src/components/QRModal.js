@@ -1,17 +1,18 @@
 var QRCode = require("qrcode.react");
 
-function Modal({ setShow, show, sessionId }) {
+function QRModal({ setShow, show, sessionId }) {
   return (
     <div
       style={show ? { display: "block" } : { display: "none" }}
-      className="Modal"
+      className="QRModal"
     >
-      <div class="modal-content">
+      <div class="QRModal-content">
         <span onClick={() => setShow(!show)} class="modal-close">
           &times;
         </span>
-        <p>{`https://pivot-fe.netlify.app/${sessionId}`}</p>
+        <h2>{`https://pivot-fe.netlify.app/${sessionId}`}</h2>
         <QRCode
+          size={256}
           className="qr_code"
           value={`https://pivot-fe.netlify.app/${sessionId}`}
         />
@@ -20,4 +21,4 @@ function Modal({ setShow, show, sessionId }) {
   );
 }
 
-export default Modal;
+export default QRModal;

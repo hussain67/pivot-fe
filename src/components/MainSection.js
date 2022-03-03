@@ -5,7 +5,8 @@ import { getSlides } from "../utils/api";
 import Footer from "./Footer";
 import ImageCarousel from "./ImageCarousel";
 import Header from "./Header";
-import Modal from "./Modal";
+import QRModal from "./QRModal";
+import PollChart from "./PollChart";
 
 const MainSection = ({
   socket,
@@ -14,6 +15,7 @@ const MainSection = ({
   setChartData,
   setCorrectAnswer,
   setImage,
+  chartData,
 }) => {
   const [showModal, setShowModal] = useState(false);
   const [slides, setSlides] = useState([]);
@@ -22,6 +24,7 @@ const MainSection = ({
   const { sessionId } = useParams();
   const [url, setUrl] = useState("");
   const [current, setCurrent] = useState(0);
+  const [showChart, setShowChart] = useState(false);
 
   useEffect(() => {
     getSlides(sessionId)
@@ -38,14 +41,11 @@ const MainSection = ({
   return isLoading ? (
     <CircularLoader></CircularLoader>
   ) : (
-    <div>
+    <div className="main">
       <Header setShowModal={setShowModal} showModal={showModal}></Header>
-      <div className="maindiv">
+      <div className="main-container">
         <ImageCarousel slides={slides} current={current}></ImageCarousel>
-
-        <div className="qr_div">
-          <p>{url}</p>
-        </div>
+        {showChart && <PollChart chartData={chartData}></PollChart>}
       </div>
       <Footer
         slideId={slideId}
@@ -58,8 +58,9 @@ const MainSection = ({
         setChartData={setChartData}
         setCorrectAnswer={setCorrectAnswer}
         setImage={setImage}
+        setShowChart={setShowChart}
       ></Footer>
-      <Modal setShow={setShowModal} show={showModal} sessionId={sessionId} />
+      <QRModal setShow={setShowModal} show={showModal} sessionId={sessionId} />
     </div>
   );
 };
