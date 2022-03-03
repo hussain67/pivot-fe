@@ -45,7 +45,6 @@ const MainSection = ({
       <Header setShowModal={setShowModal} showModal={showModal}></Header>
       <div className="main-container">
         <ImageCarousel slides={slides} current={current}></ImageCarousel>
-        {showChart && <PollChart chartData={chartData}></PollChart>}
       </div>
       <Footer
         slideId={slideId}
@@ -62,6 +61,11 @@ const MainSection = ({
         setShowChart={setShowChart}
       ></Footer>
       <QRModal setShow={setShowModal} show={showModal} sessionId={sessionId} />
+      <PollChart
+        show={showChart}
+        setShow={setShowChart}
+        chartData={chartData}
+      ></PollChart>
     </div>
   );
 };
