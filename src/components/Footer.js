@@ -148,6 +148,11 @@ const Footer = ({
     setShowChart(false);
   }
 
+  function handleShowChart() {
+    setShowChart(!showChart);
+    console.log(showChart, "<<<<");
+  }
+
   return (
     <div className="footer">
       <div className="slideNav">
@@ -182,7 +187,7 @@ const Footer = ({
           className={`poll_btns ${
             hasQuestion && pollActive && pollStopped ? "" : "poll_btns-disabled"
           }`}
-          onClick={() => setShowChart(!showChart)}
+          onClick={handleShowChart}
         >
           {showChart ? "Hide Results" : "Show Results"}
         </button>

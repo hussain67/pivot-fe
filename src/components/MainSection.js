@@ -58,6 +58,7 @@ const MainSection = ({
         setChartData={setChartData}
         setCorrectAnswer={setCorrectAnswer}
         setImage={setImage}
+        showChart={showChart}
         setShowChart={setShowChart}
       ></Footer>
       <QRModal setShow={setShowModal} show={showModal} sessionId={sessionId} />

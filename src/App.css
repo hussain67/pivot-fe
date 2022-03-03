@@ -52,13 +52,13 @@
   flex-direction: row;
   align-items: baseline;
   flex: 1;
-  height: 100%;
+  max-height: 100%;
+  max-width: 100%;
   min-height: 0;
 }
 
 .slide-image {
   max-height: 100%;
-  max-width: 100%;
   margin: auto;
 }
 
@@ -197,7 +197,6 @@ button.poll_btns-disabled {
 
 .PollChart {
   flex-grow: 1 1 auto;
-  height: 100%;
 }
 
 .responses {

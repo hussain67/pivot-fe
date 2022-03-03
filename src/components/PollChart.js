@@ -1,9 +1,7 @@
 import React from "react";
 import { Chart } from "react-google-charts";
 
-const PollChart = (props) => {
-  const data = props.chartData;
-
+const PollChart = ({ chartData }) => {
   const options = {
     title: "Poll Results",
     is3D: true,
@@ -13,7 +11,7 @@ const PollChart = (props) => {
     <div className="PollChart">
       <Chart
         chartType="PieChart"
-        data={data}
+        data={chartData}
         options={options}
         width={"100%"}
         height={"400px"}
