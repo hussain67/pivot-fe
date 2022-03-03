@@ -9,6 +9,7 @@ import QRModal from "./QRModal";
 import PollChart from "./PollChart";
 
 const MainSection = ({
+  correctAnswer,
   socket,
   responseData,
   setResponseData,
@@ -25,6 +26,7 @@ const MainSection = ({
   const [url, setUrl] = useState("");
   const [current, setCurrent] = useState(0);
   const [showChart, setShowChart] = useState(false);
+  const [pollStopped, setPollStopped] = useState(false);
 
   useEffect(() => {
     getSlides(sessionId)
@@ -47,6 +49,8 @@ const MainSection = ({
         <ImageCarousel slides={slides} current={current}></ImageCarousel>
       </div>
       <Footer
+        pollStopped={pollStopped}
+        setPollStopped={setPollStopped}
         slideId={slideId}
         setSlideId={setSlideId}
         current={current}
@@ -62,8 +66,11 @@ const MainSection = ({
       ></Footer>
       <QRModal setShow={setShowModal} show={showModal} sessionId={sessionId} />
       <PollChart
+        pollStopped={pollStopped}
+        currSlide={current}
         show={showChart}
         setShow={setShowChart}
+        correctAnswer={correctAnswer}
         chartData={chartData}
       ></PollChart>
     </div>

@@ -1,7 +1,13 @@
 import React from "react";
 import { Chart } from "react-google-charts";
 
-const PollChart = ({ chartData, show, setShow }) => {
+const PollChart = ({
+  chartData,
+  show,
+  currSlide,
+  correctAnswer,
+  pollStopped,
+}) => {
   const options = {
     title: "Poll Results",
     is3D: true,
@@ -13,9 +19,7 @@ const PollChart = ({ chartData, show, setShow }) => {
       style={show ? { display: "block" } : { display: "none" }}
     >
       <div class="PollChart-content">
-        <span onClick={() => setShow(!show)} class="modal-close">
-          &times;
-        </span>
+        <h2>Responses for slide #{currSlide + 1}</h2>
         <Chart
           chartType="PieChart"
           data={chartData}
@@ -23,6 +27,7 @@ const PollChart = ({ chartData, show, setShow }) => {
           width={"100%"}
           height={"400px"}
         />
+        {pollStopped && <h3>The correct answer was {correctAnswer}</h3>}
       </div>
     </div>
   );

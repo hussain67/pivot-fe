@@ -13,10 +13,12 @@ const Footer = ({
   setChartData,
   setCorrectAnswer,
   setImage,
+  pollStopped,
+  setPollStopped,
 }) => {
   const [noOfRes, setNoOfResponses] = useState(0);
   const [pollActive, setPollActive] = useState(false);
-  const [pollStopped, setPollStopped] = useState(false);
+
   const [hasQuestion, setHasQuestion] = useState(false);
 
   useEffect(() => {
@@ -139,13 +141,11 @@ const Footer = ({
   function handleStartClick() {
     socket.emit("teacher_current_slide", slideId);
     setPollActive(true);
-    setShowChart(false);
   }
 
   function handleStopClick() {
     socket.emit("teacher_slide_stop", slideId);
     setPollStopped(true);
-    setShowChart(false);
   }
 
   function handleShowChart() {
@@ -183,12 +183,7 @@ const Footer = ({
         >
           Stop Poll
         </button>
-        <button
-          className={`poll_btns ${
-            hasQuestion && pollActive && pollStopped ? "" : "poll_btns-disabled"
-          }`}
-          onClick={handleShowChart}
-        >
+        <button className={`poll_btns`} onClick={handleShowChart}>
           {showChart ? "Hide Results" : "Show Results"}
         </button>
       </div>
