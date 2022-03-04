@@ -1,7 +1,9 @@
 # Pivot
 Pivot questions are diagnostic questions during a presentation that allow presenters to identify misconceptions. Pivot allows a presenter to attach response data to Google slides so that audience can vote and receive feedback. 
 
-- This app requires code from three different repositories. Please check Backend Repo first.
+# Important Note -
+
+ This app is part of Pivot google plugin which is not published yet at market place. So you can't test this app stand alone. This app requires code from three different repositories. Please check Backend Repo's read me file first. We have tried to give details about plugin installation which can run locally. But you will need google developer account for that.
 
 ## Pivot-Frontend-Teacher
 
@@ -18,7 +20,9 @@ The teacher can display the total results on the board.
 - https://pivot-fe-presenter.netlify.app                         (teacher)
 - https://pivot-fe.netlify.app/                                  (student)
 
-### Installed
+### Install
+You will require to install below 
+
 - npm i react-router-dom
 - npm i axios 
 - npm i socket.io-client 
