@@ -1,5 +1,4 @@
 const ImageCarousel = ({ slides, current }) => {
-  console.log(slides);
   return (
     <img
       src={slides[current].slideImageUrl}

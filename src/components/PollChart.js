@@ -18,7 +18,7 @@ const PollChart = ({
       className="PollChart"
       style={show ? { display: "block" } : { display: "none" }}
     >
-      <div class="PollChart-content">
+      <div className="PollChart-content">
         <h2>Responses for slide #{currSlide + 1}</h2>
         <Chart
           chartType="PieChart"

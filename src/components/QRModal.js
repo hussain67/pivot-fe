@@ -6,7 +6,7 @@ function QRModal({ setShow, show, sessionId }) {
       style={show ? { display: "block" } : { display: "none" }}
       className="QRModal"
     >
-      <div class="QRModal-content">
+      <div className="QRModal-content">
         <span onClick={() => setShow(!show)} class="modal-close">
           &times;
         </span>
