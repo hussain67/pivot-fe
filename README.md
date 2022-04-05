@@ -1,5 +1,6 @@
 # Pivot
 Pivot questions are diagnostic questions during a presentation that allow presenters to identify misconceptions. Pivot allows a presenter to attach response data to Google slides so that audience can vote and receive feedback. 
+https://pivot-fe-presenter.netlify.app/presentations/gtc4
 
 # Important Note -
 

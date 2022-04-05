@@ -4,6 +4,8 @@ import MainSection from "./components/MainSection";
 import Results from "./components/Results";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import io from "socket.io-client";
+import Home from "./pages/Home";
+import("./styles/main.scss");
 
 let socket = io.connect("https://rhs-pivot-backend.herokuapp.com");
 
@@ -23,36 +25,10 @@ function App() {
     <BrowserRouter>
       <div className="App">
         <Routes>
-          <Route
-            path="/presentations/:sessionId"
-            element={
-              <MainSection
-                socket={socket}
-                responseData={responseData}
-                setResponseData={setResponseData}
-                setChartData={setChartData}
-                chartData={chartData}
-                correctAnswer={correctAnswer}
-                setCorrectAnswer={setCorrectAnswer}
-                setImage={setImage}
-              ></MainSection>
-            }
-          ></Route>
-          <Route
-            path="/presentations/:sessionId/responses/:slideId"
-            element={
-              <Results
-                responseData={responseData}
-                chartData={chartData}
-                correctAnswer={correctAnswer}
-                image={image}
-              ></Results>
-            }
-          ></Route>
-          <Route
-            path="*"
-            element={<p className="notFound">Page Not Found !!</p>}
-          />
+          <Route path={"/"} element={<Home />}></Route>
+          <Route path="/presentations/:sessionId" element={<MainSection socket={socket} responseData={responseData} setResponseData={setResponseData} setChartData={setChartData} chartData={chartData} correctAnswer={correctAnswer} setCorrectAnswer={setCorrectAnswer} setImage={setImage}></MainSection>}></Route>
+          <Route path="/presentations/:sessionId/responses/:slideId" element={<Results responseData={responseData} chartData={chartData} correctAnswer={correctAnswer} image={image}></Results>}></Route>
+          <Route path="*" element={<p className="notFound">Page Not Found !!</p>} />
         </Routes>
       </div>
     </BrowserRouter>
