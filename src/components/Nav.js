@@ -1,13 +1,13 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import pivot_logo from "../img/pivot.logo.jpg";
 
 const Nav = () => {
   const sessionId = "gtc4";
   return (
-    <nav className="page-section nav-header">
-      <Link to="/">Audience</Link>
-      <Link to={`/presentations/${sessionId}`}>Presenter</Link>
-    </nav>
+    <div className="nav__header">
+      <img src={pivot_logo}></img>
+    </div>
   );
 };
 

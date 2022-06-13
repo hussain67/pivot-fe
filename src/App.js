@@ -5,12 +5,15 @@ import Results from "./components/Results";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import io from "socket.io-client";
 import Home from "./pages/Home";
+import CreatePresentation from "./pages/CreatePresentation";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import("./styles/main.scss");
 
 let socket = io.connect("https://rhs-pivot-backend.herokuapp.com");
 
 if (!process.env.NODE_ENV || process.env.NODE_ENV === "development") {
-  socket = io.connect("http://localhost:9090");
+  socket = io.connect("http://localhost:3000");
 } else {
   socket = io.connect("https://rhs-pivot-backend.herokuapp.com");
 }
@@ -25,12 +28,14 @@ function App() {
     <BrowserRouter>
       <div className="App">
         <Routes>
-          <Route path={"/"} element={<Home />}></Route>
+          <Route path="/" element={<Home />}></Route>
+          <Route path="/create-presentation" element={<CreatePresentation />}></Route>
           <Route path="/presentations/:sessionId" element={<MainSection socket={socket} responseData={responseData} setResponseData={setResponseData} setChartData={setChartData} chartData={chartData} correctAnswer={correctAnswer} setCorrectAnswer={setCorrectAnswer} setImage={setImage}></MainSection>}></Route>
           <Route path="/presentations/:sessionId/responses/:slideId" element={<Results responseData={responseData} chartData={chartData} correctAnswer={correctAnswer} image={image}></Results>}></Route>
           <Route path="*" element={<p className="notFound">Page Not Found !!</p>} />
         </Routes>
       </div>
+      <ToastContainer />
     </BrowserRouter>
   );
 }

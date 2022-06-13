@@ -1,0 +1,17 @@
+.home-main {
+  display: grid;
+  grid-template-columns: 50% 50%;
+  height: 100%;
+  width: 100%;
+}
+
+.home-main__left {
+  background-color: antiquewhite;
+}
+
+.home-main__right {
+  background-color: rgb(236, 239, 243);
+  display: grid;
+  align-items: center;
+  justify-items: center;
+}
