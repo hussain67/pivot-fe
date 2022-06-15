@@ -13,7 +13,7 @@ import("./styles/main.scss");
 let socket = io.connect("https://rhs-pivot-backend.herokuapp.com");
 
 if (!process.env.NODE_ENV || process.env.NODE_ENV === "development") {
-  socket = io.connect("http://localhost:3000");
+  socket = io.connect("http://localhost:9090");
 } else {
   socket = io.connect("https://rhs-pivot-backend.herokuapp.com");
 }

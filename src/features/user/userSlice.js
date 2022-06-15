@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { toast } from "react-toastify";
+import pivotApi from "../../utils/api";
 
 const initialState = {
   isLoading: false,
@@ -7,15 +8,56 @@ const initialState = {
 };
 
 export const registerUser = createAsyncThunk("user/registerUser", async (user, thunkAPI) => {
-  console.log("Register user", ` ${JSON.stringify(user)}`);
+  try {
+    const resp = await pivotApi.post("/auth/register", user);
+
+    return resp.data;
+  } catch (error) {
+    return thunkAPI.rejectWithValue(error.response.data.msg);
+  }
 });
+
 export const loginUser = createAsyncThunk("user/loginUser", async (user, thunkAPI) => {
-  console.log("Login user", ` ${JSON.stringify(user)}`);
+  try {
+    const resp = await pivotApi.post("/auth/login", user);
+
+    return resp.data;
+  } catch (error) {
+    return thunkAPI.rejectWithValue(error.response.data.msg);
+  }
 });
 
 const userSlice = createSlice({
   name: "user",
-  initialState
+  initialState,
+  extraReducers: {
+    [registerUser.pending]: state => {
+      state.isLoading = true;
+    },
+    [registerUser.fulfilled]: (state, { payload }) => {
+      const { user } = payload;
+      state.isLoading = false;
+      state.user = user;
+      toast.success(` Hello ${user.name}`);
+    },
+    [registerUser.rejected]: (state, { payload }) => {
+      state.isLoading = false;
+      toast.error(payload);
+    },
+    [loginUser.pending]: state => {
+      state.isLoading = true;
+    },
+    [loginUser.fulfilled]: (state, { payload }) => {
+      const { user } = payload;
+      state.isLoading = false;
+      state.user = user;
+      toast.success(`Wellcome back ${user.name}`);
+    },
+    [loginUser.rejected]: (state, { payload }) => {
+      state.isLoading = false;
+      toast.error(payload);
+    }
+  }
 });
 
 export default userSlice.reducer;
