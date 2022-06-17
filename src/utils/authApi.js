@@ -10,12 +10,12 @@ export const getSlides = sessionId => {
 //"api/v1/auth/register"
 export const registerUser = async (name, email, password) => {
   try {
-    const result = await Axios.post("/api/v1/auth/register", {
+    const response = await Axios.post("/api/v1/auth/register", {
       name,
       email,
       password
     });
-    console.log(result);
+    return response;
   } catch (error) {
     console.log(error.response);
 
@@ -27,8 +27,9 @@ export const registerUser = async (name, email, password) => {
 
 export const loginUser = async (email, password) => {
   try {
-    const result = await Axios.post("api/v1/auth/login", { email, password });
-    console.log(result);
+    const response = await Axios.post("api/v1/auth/login", { email, password });
+    console.log(response);
+    return response.data.user;
   } catch (error) {
     console.log(error);
   }

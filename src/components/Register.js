@@ -1,9 +1,9 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useState } from "react";
-import Axios from "axios";
-import { registerUser, loginUser, getInfo } from "../utils/api";
+import { registerUser, loginUser, getInfo } from "../utils/authApi";
 
 import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 const initialState = {
   name: "",
@@ -15,21 +15,14 @@ const initialState = {
 
 function Register(props) {
   const [values, setValues] = useState(initialState);
+  const [user, setUser] = useState(null);
+  const navigate = useNavigate();
 
   const handleChange = e => {
     const name = e.target.name;
     const value = e.target.value;
     setValues({ ...values, [name]: value });
   };
-  async function registerPresenter() {
-    const { name, email, password } = values;
-    try {
-      const response = await Axios.post("/api/v1/auth/register", { name, email, password });
-      console.log(response);
-    } catch (error) {
-      console.log(error);
-    }
-  }
 
   const onSubmit = e => {
     e.preventDefault();
@@ -39,12 +32,23 @@ function Register(props) {
       return;
     }
     if (values.isRegistered) {
-      loginUser(email, password);
+      loginUser(email, password).then(user => {
+        setUser(user);
+      });
+
       return;
     }
     registerUser(name, email, password);
     // registerPresenter();
   };
+
+  useEffect(() => {
+    if (user) {
+      setTimeout(() => {
+        navigate("/");
+      }, 1000);
+    }
+  }, [user, navigate]);
 
   const toggleRegistered = () => {
     setValues({ ...values, isRegistered: !values.isRegistered });

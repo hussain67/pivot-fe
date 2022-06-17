@@ -5,7 +5,7 @@ import Results from "./components/Results";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import io from "socket.io-client";
 import Home from "./pages/Home";
-import CreatePresentation from "./pages/CreatePresentation";
+import { Stats, Profile, CreatePresentation, DisplayPresentation, SharedLayout } from "./pages/presentation";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import("./styles/main.scss");
@@ -28,7 +28,12 @@ function App() {
     <BrowserRouter>
       <div className="App">
         <Routes>
-          <Route path="/" element={<Home />}></Route>
+          <Route path="/" element={<SharedLayout />}>
+            <Route index element={<Stats />} />
+            <Route path="profile" element={<Profile />} />
+            <Route path="create-presentation" element={<CreatePresentation />} />
+          </Route>
+          <Route path="/home" element={<Home />}></Route>
           <Route path="/create-presentation" element={<CreatePresentation />}></Route>
           <Route path="/presentations/:sessionId" element={<MainSection socket={socket} responseData={responseData} setResponseData={setResponseData} setChartData={setChartData} chartData={chartData} correctAnswer={correctAnswer} setCorrectAnswer={setCorrectAnswer} setImage={setImage}></MainSection>}></Route>
           <Route path="/presentations/:sessionId/responses/:slideId" element={<Results responseData={responseData} chartData={chartData} correctAnswer={correctAnswer} image={image}></Results>}></Route>

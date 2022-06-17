@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { toast } from "react-toastify";
-import pivotApi from "../../utils/api";
+import pivotApi from "../../utils/authApi";
 
 const initialState = {
   isLoading: false,

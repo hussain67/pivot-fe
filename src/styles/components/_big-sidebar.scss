@@ -1,0 +1,6 @@
+.big-sidebar {
+  display: none;
+  @media screen and (min-width: 992px) {
+    display: block;
+  }
+}
