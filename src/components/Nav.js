@@ -1,5 +1,4 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import pivot_logo from "../img/pivot.logo.jpg";
 
 const Nav = () => {

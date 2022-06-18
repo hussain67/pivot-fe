@@ -1,0 +1,26 @@
+.navbar {
+  display: flex;
+  background-color: #fff;
+  height: 6rem;
+  align-items: center;
+
+  &__center {
+    display: flex;
+    width: 100%;
+    justify-content: space-around;
+    align-items: center;
+  }
+  &__btn-container {
+    position: relative;
+  }
+}
+
+.navbar-dropdown {
+  position: absolute;
+  display: none;
+  top: 50px;
+  width: 100%;
+}
+.navbar-dropdown--show {
+  display: block;
+}

@@ -7,7 +7,7 @@ export const getSlides = sessionId => {
     return res.data.presentation;
   });
 };
-//"api/v1/auth/register"
+
 export const registerUser = async (name, email, password) => {
   try {
     const response = await Axios.post("/api/v1/auth/register", {
@@ -15,14 +15,12 @@ export const registerUser = async (name, email, password) => {
       email,
       password
     });
-    return response;
+
+    return response.data.user;
   } catch (error) {
     console.log(error.response);
-
     toast.error(error.response.data.msg);
   }
-
-  // console.log(result);
 };
 
 export const loginUser = async (email, password) => {
@@ -34,6 +32,17 @@ export const loginUser = async (email, password) => {
     console.log(error);
   }
 };
+export const logoutUser = async () => {
+  try {
+    const response = await Axios.post("api/v1/auth/logout");
+    toast.success(response.data.msg);
+    return response.data.msg;
+  } catch (error) {
+    console.log(error.response);
+    toast.error(error.response.data.msg);
+  }
+};
+
 export const getInfo = async () => {
   try {
     const result = await Axios.get("/api/v1");

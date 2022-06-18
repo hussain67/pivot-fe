@@ -1,4 +1,6 @@
 .big-sidebar {
+  background-color: $color-background-white;
+  height: 100vh;
   display: none;
   @media screen and (min-width: 992px) {
     display: block;
