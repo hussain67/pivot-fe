@@ -1,24 +1,23 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { logoutUser } from "../utils/authApi";
 import { FaAlignLeft, FaCaretDown, FaUserCircle } from "react-icons/fa";
 import { removeUserFromLocalStorage } from "../utils/localstorage";
+import { userContext } from "../context/userContext";
 
 const NavBar = () => {
+  const { setShowSidebar } = useContext(userContext);
   const [showLogout, setShowLogout] = useState(false);
   const navigate = useNavigate();
 
-  const toggleLogout = () => {
-    setShowLogout(!showLogout);
-  };
   return (
-    <div className="navbar" onClick={toggleLogout}>
+    <div className="navbar">
       <div className="navbar__center">
-        <button type="button" className="btn-toggle">
+        <button type="button" className="btn-toggle" onClick={() => setShowSidebar(true)}>
           <FaAlignLeft />
         </button>
-        <h1>Dashboard</h1>
-        <div className="navbar__btn-container">
+        <h1 className="navbar__text">Dashboard</h1>
+        <div className="navbar__btn-container" onClick={() => setShowLogout(!showLogout)}>
           <button type="button" className="btn-user">
             <FaUserCircle />
             Name

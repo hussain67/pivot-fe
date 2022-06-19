@@ -1,7 +1,24 @@
 .small-sidebar {
-  background-color: $color-background-white;
-  height: 100vh;
-  @media screen and (min-width: 992px) {
+  @media screen and(min-width:992px) {
     display: none;
+  }
+  background-color: $color-background-white;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 0;
+
+  z-index: -1;
+  opacity: 0;
+  transition: all 2s;
+  & img {
+    width: 100px;
+    height: auto;
+  }
+  &--show {
+    z-index: 99;
+    opacity: 1;
+    width: 75%;
   }
 }
