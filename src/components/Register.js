@@ -64,7 +64,7 @@ function Register(props) {
   };
   return (
     <div className="form">
-      <form className="form__register" onSubmit={onSubmit}>
+      <form className="form__container" onSubmit={onSubmit}>
         <h3>{values.isRegistered ? "Login" : "Register"} </h3>
         {!values.isRegistered && (
           <div className="form__row">
