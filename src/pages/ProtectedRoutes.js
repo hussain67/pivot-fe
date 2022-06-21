@@ -1,8 +1,8 @@
 import { Navigate } from "react-router-dom";
-import { getUserFromLocalStorage } from "../utils/localstorage";
+import { getItemFromLocalStorage } from "../utils/localstorage";
 
 const ProtectedRoute = ({ children }) => {
-  const user = getUserFromLocalStorage("user");
+  const user = getItemFromLocalStorage("user");
   if (!user) {
     return <Navigate to="/home" />;
   }

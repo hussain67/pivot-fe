@@ -1,11 +1,11 @@
 import React, { useEffect } from "react";
 import { useState } from "react";
 //import { userContext } from "../context/userContext";
-import { registerUser, loginUser, getInfo } from "../utils/authApi";
+import { registerUser, loginUser, getInfo } from "../utils/api/authApi";
 
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
-import { addUserToLocalStorage } from "../utils/localstorage";
+import { addItemToLocalStorage } from "../utils/localstorage";
 
 const initialState = {
   name: "",
@@ -36,14 +36,16 @@ function Register(props) {
     }
     if (values.isRegistered) {
       loginUser(email, password).then(user => {
-        addUserToLocalStorage(user);
-        setUser(user);
+        if (user) {
+          addItemToLocalStorage("user", user);
+          setUser(user);
+        }
       });
 
       return;
     }
     registerUser(name, email, password).then(user => {
-      addUserToLocalStorage(user);
+      addItemToLocalStorage("user", user);
       setUser(user);
     });
   };

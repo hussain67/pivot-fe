@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import CircularLoader from "./CircularLoader";
-import { getSlides } from "../utils/authApi";
+import { getSlides } from "../utils/api/authApi";
 import Footer from "./Footer";
 import ImageCarousel from "./ImageCarousel";
 import Header from "./Header";

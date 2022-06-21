@@ -1,8 +1,8 @@
 import React, { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { logoutUser } from "../utils/authApi";
+import { logoutUser } from "../utils/api/authApi";
 import { FaAlignLeft, FaCaretDown, FaUserCircle } from "react-icons/fa";
-import { removeUserFromLocalStorage, getUserFromLocalStorage } from "../utils/localstorage";
+import { removeItemsFromLocalStorage, getItemFromLocalStorage } from "../utils/localstorage";
 import { userContext } from "../context/userContext";
 import { useEffect } from "react";
 
@@ -16,7 +16,7 @@ const NavBar = () => {
     setShowSidebar(!showSidebar);
   };
   useEffect(() => {
-    const user = getUserFromLocalStorage("user");
+    const user = getItemFromLocalStorage("user");
     setUser(user);
   }, []);
   return (
@@ -39,7 +39,7 @@ const NavBar = () => {
               onClick={() => {
                 const response = logoutUser();
                 if (response) {
-                  removeUserFromLocalStorage("user");
+                  removeItemsFromLocalStorage();
                   navigate("/home");
                 }
               }}

@@ -1,11 +1,11 @@
 import "./App.css";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import MainSection from "./components/MainSection";
 import Results from "./components/Results";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import io from "socket.io-client";
 import Home from "./pages/Home";
-import { Stats, Profile, CreatePresentation, DisplayPresentation, SharedLayout } from "./pages/presentation";
+import { Stats, Profile, DisplayPresentation, CreateSlide, SharedLayout } from "./pages/presentation";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 //import { getUserFromLocalStorage } from "./utils/localstorage";
@@ -25,12 +25,7 @@ function App() {
   const [chartData, setChartData] = useState([["Option", "Response"]]);
   const [correctAnswer, setCorrectAnswer] = useState("");
   const [image, setImage] = useState("");
-  /*
-  useEffect(() => {
-    const loggedInUser = getUserFromLocalStorage("user");
-    setUser(loggedInUser);
-  }, [user]);
-*/
+
   return (
     <BrowserRouter>
       <div className="App">
@@ -45,10 +40,11 @@ function App() {
           >
             <Route index element={<Stats />} />
             <Route path="profile" element={<Profile />} />
-            <Route path="create-presentation" element={<CreatePresentation />} />
+            <Route path="create-slide" element={<CreateSlide />} />
+            <Route path="display-presentation" element={<DisplayPresentation />} />
           </Route>
           <Route path="/home" element={<Home />}></Route>
-          <Route path="/create-presentation" element={<CreatePresentation />}></Route>
+
           <Route path="/presentations/:sessionId" element={<MainSection socket={socket} responseData={responseData} setResponseData={setResponseData} setChartData={setChartData} chartData={chartData} correctAnswer={correctAnswer} setCorrectAnswer={setCorrectAnswer} setImage={setImage}></MainSection>}></Route>
           <Route path="/presentations/:sessionId/responses/:slideId" element={<Results responseData={responseData} chartData={chartData} correctAnswer={correctAnswer} image={image}></Results>}></Route>
           <Route path="*" element={<p className="notFound">Page Not Found !!</p>} />
