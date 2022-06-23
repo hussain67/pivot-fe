@@ -5,7 +5,7 @@ import Results from "./components/Results";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import io from "socket.io-client";
 import Home from "./pages/Home";
-import { Stats, Profile, DisplayPresentation, CreateSlide, SharedLayout } from "./pages/presentation";
+import { Stats, Profile, CreatePresentation, DisplayPresentation, CreateSlide, SharedLayout } from "./pages/presentation";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 //import { getUserFromLocalStorage } from "./utils/localstorage";
@@ -40,8 +40,9 @@ function App() {
           >
             <Route index element={<Stats />} />
             <Route path="profile" element={<Profile />} />
-            <Route path="create-slide" element={<CreateSlide />} />
-            <Route path="display-presentation" element={<DisplayPresentation />} />
+            <Route path="create-slide/:presentationId" element={<CreateSlide />} />
+            <Route path="create" element={<CreatePresentation />} />
+            <Route path="display" element={<DisplayPresentation />} />
           </Route>
           <Route path="/home" element={<Home />}></Route>
 

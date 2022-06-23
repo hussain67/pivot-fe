@@ -1,19 +1,22 @@
 .btn {
+  display: block;
   border-radius: 5px;
   border: transparent;
   cursor: pointer;
-
   text-transform: capitalize;
   font-size: 14px;
 }
 
 .btn__block {
-  display: block;
+  //display: block;
   width: 100%;
   height: 30px;
   background-color: rgb(68, 138, 154);
 }
-
+.btn-container {
+  display: flex;
+  gap: 10px;
+}
 .btn__register {
   display: inline-block;
   margin-top: 15px;
@@ -58,4 +61,19 @@
   display: block;
   cursor: pointer;
   margin: 30px;
+}
+.btn-view {
+  width: auto;
+  background-color: #fff;
+  color: black;
+  padding: 8px 6px;
+}
+.btn-edit {
+  background-color: #fff;
+  color: black;
+}
+.btn-delete {
+  background-color: #fff;
+
+  color: red;
 }
