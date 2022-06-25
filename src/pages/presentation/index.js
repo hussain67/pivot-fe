@@ -3,6 +3,6 @@ import Profile from "./Profile";
 import SharedLayout from "./SharedLayout";
 import Stats from "./Stats";
 import CreatePresentation from "./CreatePresentation";
-import CreateSlide from "./CreateSlide";
+import Slides from "./Slides";
 
-export { Stats, Profile, CreatePresentation, CreateSlide, DisplayPresentation, SharedLayout };
+export { Stats, Profile, CreatePresentation, Slides, DisplayPresentation, SharedLayout };

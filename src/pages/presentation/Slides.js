@@ -9,7 +9,7 @@ const initialState = {
   image: "",
   question: ""
 };
-const CreateSlide = () => {
+const Slides = () => {
   const id = useParams();
   const [presentationName, setPresentationName] = useState("");
   const [values, setValues] = useState(initialState);
@@ -47,4 +47,4 @@ const CreateSlide = () => {
   );
 };
 
-export default CreateSlide;
+export default Slides;
