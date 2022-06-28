@@ -1,0 +1,30 @@
+.create-slide {
+  margin-top: 25px;
+  display: grid;
+  grid-template-columns: 100%;
+  @media screen and (min-width: 688px) {
+    grid-template-columns: 75% 25%;
+    column-gap: 40px;
+  }
+
+  &__name {
+    text-align: left;
+    h1 {
+      margin-bottom: 25px;
+    }
+  }
+
+  &__create {
+    margin: 0 auto;
+    width: 450px;
+    text-align: left;
+    @media screen and (min-width: 574px) {
+      width: 600px;
+      max-width: 750px;
+    }
+
+    h1 {
+      margin-bottom: 25px;
+    }
+  }
+}

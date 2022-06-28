@@ -12,7 +12,7 @@ const PresentationList = ({ presentations, deletePresentation, setEdit, showSlid
             <span>{title} </span>
             <div className="btn-container">
               <button className="btn btn-view" onClick={() => showSlides(_id)}>
-                View Slides
+                Create Slides
               </button>
               <button
                 className="btn btn-edit"
