@@ -2,7 +2,7 @@ import React from "react";
 import { FaRegTrashAlt } from "react-icons/fa";
 import { AiOutlineEdit } from "react-icons/ai";
 
-const PresentationList = ({ presentations, deletePresentation, setEdit, showSlides }) => {
+const PresentationList = ({ presentations, deletePresentation, setEdit, createSlides }) => {
   return (
     <div>
       {presentations.map(presentation => {
@@ -11,7 +11,7 @@ const PresentationList = ({ presentations, deletePresentation, setEdit, showSlid
           <div key={_id} className="presentation-list">
             <span>{title} </span>
             <div className="btn-container">
-              <button className="btn btn-view" onClick={() => showSlides(_id)}>
+              <button className="btn btn-view" onClick={() => createSlides(_id)}>
                 Create Slides
               </button>
               <button

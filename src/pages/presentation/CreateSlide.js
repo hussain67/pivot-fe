@@ -1,6 +1,6 @@
 import React from "react";
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams, Link } from "react-router-dom";
 import Page from "../../components/Page";
 import { createSlide, getPresentationById, uploadSlideImage } from "../../utils/api/presentationApi";
 
@@ -12,15 +12,17 @@ const initialState = {
 };
 const Slides = () => {
   const { id } = useParams();
+  const navigate = useNavigate();
   const [presentation, setPresentation] = useState("");
   const [slide, setSlide] = useState(initialState);
+  const [slides, setSlides] = useState([]);
 
   useEffect(() => {
     getPresentationById(id).then(presentation => {
       setPresentation(presentation);
+      setSlides(presentation.slides);
     });
   }, []);
-  //console.log(presentation.slides);
   const handleChange = e => {
     const name = e.target.name;
     const value = e.target.value;
@@ -34,14 +36,14 @@ const Slides = () => {
       setSlide({ ...slide, slideImage: src });
     });
   };
-  //console.log(slide);
 
   const handleSubmit = e => {
     e.preventDefault();
-    createSlide(id, slide).then(presentation => {
-      //console.log(presentation);
-      if (presentation) {
-        setPresentation(presentation);
+    createSlide(id, slide).then(slideId => {
+      // console.log(slideId);
+      if (slide) {
+        setSlide(initialState);
+        navigate(`/${id}/slide-show/${slideId}`);
       }
     });
   };
@@ -72,6 +74,12 @@ const Slides = () => {
                 </label>
                 <input type="file" id="image" accept="image/*" onChange={handleImageUpload} />
               </div>
+              <div className="form__row">
+                <label htmlFor="question" className="form__label">
+                  Question:
+                </label>
+                <input type="text" name="slideQuestion" className="form__input" onChange={handleChange} value={slide.slideQuestion} />
+              </div>
               <button type="submit" className="btn btn__block btn-create-slide">
                 Submit
               </button>
@@ -80,9 +88,15 @@ const Slides = () => {
         </div>
         <div className="create-slide__name">
           <h1>Slides</h1>
-          {presentation.slides &&
-            presentation.slides.map(slide => {
-              return <li key={slide._id}>{slide.slideTitle}</li>;
+          {slides.length > 0 &&
+            slides.map(slide => {
+              return (
+                <li>
+                  <Link to={`/${id}/slide-show/${slide._id}`} key={slide._id}>
+                    {slide.slideTitle}
+                  </Link>
+                </li>
+              );
             })}
         </div>
       </div>

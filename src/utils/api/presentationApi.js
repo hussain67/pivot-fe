@@ -68,6 +68,25 @@ export const uploadSlideImage = async formData => {
 export const createSlide = async (id, slide) => {
   try {
     const response = await Axios.post(`/api/v1/presentations/${id}/slides`, slide);
+    // console.log(response.data);
+    return response.data;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const getSlideById = async (presentationId, slideId) => {
+  try {
+    const response = await Axios.get(`/api/v1/presentations/${presentationId}/slides/${slideId}`);
+    console.log(response);
+    return response.data;
+  } catch (error) {
+    console.log(error);
+  }
+};
+export const deleteSlideById = async (presentationId, slideId) => {
+  try {
+    const response = await Axios.delete(`/api/v1/presentations/${presentationId}/slides/${slideId}`);
     console.log(response);
     return response.data;
   } catch (error) {

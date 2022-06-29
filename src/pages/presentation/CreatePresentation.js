@@ -36,8 +36,8 @@ const CreatePresentation = () => {
     }
     setInput("");
   };
-  const showSlides = id => {
-    navigate(`/slides/${id}`);
+  const createSlides = id => {
+    navigate(`/slide-create/${id}`);
   };
   const editPresentation = (id, title) => {
     return editPresentationById(id, title).then(presentation => {
@@ -78,17 +78,7 @@ const CreatePresentation = () => {
       }
     });
   }, []);
-  //console.log(presentations);
-  /*
-  useEffect(() => {
-    if (presentation) {
-      setTimeout(() => {
-        navigate(`/create-slide/${presentation.id}`);
-      }, 1000);
-    }
-  }, [presentation, navigate]);
 
-  */
   return (
     <Page title={"Create-presentation"}>
       <div className="presentation-create">
@@ -101,7 +91,7 @@ const CreatePresentation = () => {
           </button>
         </form>
 
-        <div>{presentations.length > 0 && <PresentationList presentations={presentations} deletePresentation={deletePresentation} showSlides={showSlides} setEdit={setEdit} />}</div>
+        <div>{presentations.length > 0 && <PresentationList presentations={presentations} deletePresentation={deletePresentation} createSlides={createSlides} setEdit={setEdit} />}</div>
       </div>
     </Page>
   );
