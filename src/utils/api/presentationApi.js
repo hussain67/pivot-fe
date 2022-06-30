@@ -93,6 +93,15 @@ export const deleteSlideById = async (presentationId, slideId) => {
     console.log(error);
   }
 };
+export const updateSlideById = async (presentationId, slideId, slide) => {
+  try {
+    const response = await Axios.patch(`/api/v1/presentations/${presentationId}/slides/${slideId}`, slide);
+    console.log(response);
+    return response.data;
+  } catch (error) {
+    console.log(error);
+  }
+};
 
 export const getAllSlides = async id => {
   try {

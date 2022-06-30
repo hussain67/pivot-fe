@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams, Link } from "react-router-dom";
 import { deleteSlideById, getSlideById } from "../../utils/api/presentationApi";
 import { FaRegTrashAlt } from "react-icons/fa";
 import { AiOutlineEdit } from "react-icons/ai";
 
 const ViewSingleSlide = () => {
+  const navigate = useNavigate();
   const { presentationId, slideId } = useParams();
   const [slide, setSlide] = useState();
   useEffect(() => {
@@ -13,8 +14,18 @@ const ViewSingleSlide = () => {
     });
   }, [presentationId, slideId]);
 
+  const deleteSlide = async () => {
+    await deleteSlideById(presentationId, slideId);
+    navigate(`/slide-create/${presentationId}`);
+  };
   return (
     <div>
+      <p>
+        <Link to={`/slide-create/${presentationId}`}>
+          {" "}
+          &laquo;<small>Back to slides </small>{" "}
+        </Link>
+      </p>
       {slide && (
         <div className="view-slide">
           <div className="view-slide__header">
@@ -23,17 +34,12 @@ const ViewSingleSlide = () => {
               <button
                 className="btn btn-edit"
                 onClick={() => {
-                  // setEdit(_id, title);
+                  navigate(`/${presentationId}/slide-edit/${slideId}`);
                 }}
               >
                 <AiOutlineEdit />
               </button>
-              <button
-                className="btn btn-delete"
-                onClick={() => {
-                  deleteSlideById(presentationId, slideId);
-                }}
-              >
+              <button className="btn btn-delete" onClick={deleteSlide}>
                 <FaRegTrashAlt />
               </button>
             </div>

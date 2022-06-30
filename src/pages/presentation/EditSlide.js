@@ -2,7 +2,7 @@ import React from "react";
 import { useEffect, useState } from "react";
 import { useNavigate, useParams, Link } from "react-router-dom";
 import Page from "../../components/Page";
-import { createSlide, getPresentationById, uploadSlideImage } from "../../utils/api/presentationApi";
+import { updateSlideById, getSlideById, uploadSlideImage } from "../../utils/api/presentationApi";
 
 const initialState = {
   slideTitle: "",
@@ -10,19 +10,17 @@ const initialState = {
   slideImage: "",
   slideQuestion: ""
 };
-const Slides = () => {
-  const { id } = useParams();
+const EditSlide = () => {
   const navigate = useNavigate();
-  const [presentation, setPresentation] = useState("");
+  const { presentationId, slideId } = useParams();
   const [slide, setSlide] = useState(initialState);
-  const [slides, setSlides] = useState([]);
 
   useEffect(() => {
-    getPresentationById(id).then(presentation => {
-      setPresentation(presentation);
-      setSlides(presentation.slides);
+    getSlideById(presentationId, slideId).then(slide => {
+      setSlide(slide);
     });
-  }, []);
+  }, [presentationId, slideId]);
+
   const handleChange = e => {
     const name = e.target.name;
     const value = e.target.value;
@@ -39,21 +37,20 @@ const Slides = () => {
 
   const handleSubmit = e => {
     e.preventDefault();
-    createSlide(id, slide).then(slideId => {
+    updateSlideById(presentationId, slideId, slide).then(slide => {
       // console.log(slideId);
       if (slide) {
-        setSlide(initialState);
-        navigate(`/${id}/slide-view/${slideId}`);
+        // setSlide(initialState);
+        navigate(`/${presentationId}/slide-view/${slideId}`);
       }
     });
   };
 
   return (
     <Page>
-      <h1>Presentation: {presentation.title}</h1>
       <div className="create-slide">
         <div className="create-slide__create">
-          <h1>Create slide</h1>
+          <h1>Edit slide</h1>
           <div className="create-slide__create__container">
             <form className="" onSubmit={handleSubmit}>
               <div className="form__row">
@@ -68,6 +65,7 @@ const Slides = () => {
                 </label>
                 <textarea type="text" name="slideBody" className="form__input form__body" onChange={handleChange} value={slide.slideBody} />
               </div>
+              <img className="view-slide__image" src={slide.slideImage} alt="" />
               <div className="form__row">
                 <label htmlFor="image" className="form__label">
                   Image
@@ -81,27 +79,14 @@ const Slides = () => {
                 <input type="text" name="slideQuestion" className="form__input" onChange={handleChange} value={slide.slideQuestion} />
               </div>
               <button type="submit" className="btn btn__block btn-create-slide">
-                Submit
+                Save Updates
               </button>
             </form>
           </div>
-        </div>
-        <div className="create-slide__name">
-          <h1>Slides</h1>
-          {slides.length > 0 &&
-            slides.map(slide => {
-              return (
-                <li>
-                  <Link to={`/${id}/slide-view/${slide._id}`} key={slide._id}>
-                    {slide.slideTitle}
-                  </Link>
-                </li>
-              );
-            })}
         </div>
       </div>
     </Page>
   );
 };
 
-export default Slides;
+export default EditSlide;

@@ -11,6 +11,7 @@ import "react-toastify/dist/ReactToastify.css";
 //import { getUserFromLocalStorage } from "./utils/localstorage";
 import ProtectedRoute from "./pages/ProtectedRoutes";
 import ViewSingleSlide from "./pages/presentation/ViewSingleSlide";
+import EditSlide from "./pages/presentation/EditSlide";
 import("./styles/main.scss");
 
 let socket = io.connect("https://rhs-pivot-backend.herokuapp.com");
@@ -44,7 +45,8 @@ function App() {
 
             <Route path="create" element={<CreatePresentation />} />
             <Route path="slide-create/:id" element={<CreateSlide />} />
-            <Route path="/:presentationId/slide-show/:slideId" element={<ViewSingleSlide />} />
+            <Route path="/:presentationId/slide-view/:slideId" element={<ViewSingleSlide />} />
+            <Route path="/:presentationId/slide-edit/:slideId" element={<EditSlide />} />
             <Route path="display" element={<DisplayPresentation />} />
           </Route>
           <Route path="/home" element={<Home />}></Route>
