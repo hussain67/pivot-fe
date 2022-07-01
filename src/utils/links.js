@@ -3,7 +3,7 @@ const links = [
   { id: 2, text: "profile", path: "profile" },
   { id: 3, text: "create", path: "create" },
 
-  { id: 4, text: "display", path: "display" }
+  { id: 4, text: "display", path: "presentation-display" }
 ];
 
 export default links;

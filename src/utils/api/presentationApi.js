@@ -106,7 +106,8 @@ export const updateSlideById = async (presentationId, slideId, slide) => {
 export const getAllSlides = async id => {
   try {
     const response = await Axios.get(`/api/v1/presentations/${id}/slides`);
-    console.log(response);
+    // console.log(response);
+    return response.data;
   } catch (error) {
     console.log(error);
   }

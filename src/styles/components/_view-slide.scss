@@ -28,3 +28,35 @@
     text-align: left;
   }
 }
+.slide-display {
+  position: relative;
+}
+.slide__content {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transition: all 0.8s;
+}
+.slide-active {
+  opacity: 1;
+  transform: translate(0);
+}
+.slide-last {
+  transform: translateX(-100%);
+}
+.slide-next {
+  transform: translateX(100%);
+}
+.prev {
+  position: absolute;
+  left: 0;
+  top: 100px;
+}
+.next {
+  position: absolute;
+  right: 0;
+  top: 100px;
+}

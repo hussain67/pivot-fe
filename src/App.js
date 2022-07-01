@@ -45,9 +45,9 @@ function App() {
 
             <Route path="create" element={<CreatePresentation />} />
             <Route path="slide-create/:id" element={<CreateSlide />} />
-            <Route path="/:presentationId/slide-view/:slideId" element={<ViewSingleSlide />} />
-            <Route path="/:presentationId/slide-edit/:slideId" element={<EditSlide />} />
-            <Route path="display" element={<DisplayPresentation />} />
+            <Route path=":presentationId/slide-view/:slideId" element={<ViewSingleSlide />} />
+            <Route path=":presentationId/slide-edit/:slideId" element={<EditSlide />} />
+            <Route path="presentation-display/:presentationId" element={<DisplayPresentation />} />
           </Route>
           <Route path="/home" element={<Home />}></Route>
 
