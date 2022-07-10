@@ -1,5 +1,6 @@
 .dashboard {
   display: grid;
+  height: 100vh;
 
   @media screen and(min-width:992px) {
     grid-template-columns: auto 1fr;
