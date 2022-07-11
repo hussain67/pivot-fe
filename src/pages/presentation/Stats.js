@@ -26,7 +26,7 @@ const Stats = () => {
               <div key={_id} className="presentation-list">
                 <span>{title} </span>
                 <div className="btn-container">
-                  <button className="btn btn-view" onClick={() => navigate(`presentation-display/${presentation._id}`)}>
+                  <button className="btn btn-view" onClick={() => navigate(`presentation-display/${presentation.title}/${presentation._id}`)}>
                     Display
                   </button>
                 </div>

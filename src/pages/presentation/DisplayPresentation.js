@@ -15,7 +15,7 @@ socket.on("join-message", msg => {
 });
 */
 const DisplayPresentation = ({ socket }) => {
-  const { presentationId } = useParams();
+  const { presentationTitle, presentationId } = useParams();
   const [slides, setSlides] = useState([]);
   const [index, setIndex] = useState(0);
   const [isStart, setIsStart] = useState(true);
@@ -64,9 +64,7 @@ const DisplayPresentation = ({ socket }) => {
     const obj = slides[currentIndex];
     socket.emit("current-slide", obj);
   };
-  socket.on("answer", answer => {
-    console.log(answer);
-  });
+
   return (
     <section className="slide">
       {slides.length > 0 && (
@@ -82,8 +80,8 @@ const DisplayPresentation = ({ socket }) => {
               {isStart ? "Start" : "Stop"}
             </button>
             {index === slides.length - 1 && (
-              <button className={"btn"} onClick={() => navigate(`/presentation-pool/${presentationId}`)}>
-                Pool
+              <button className={"btn"} onClick={() => navigate(`/presentation-pool/${presentationTitle}/${presentationId}`)}>
+                Start Pool
               </button>
             )}
           </footer>

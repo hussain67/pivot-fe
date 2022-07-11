@@ -58,7 +58,7 @@ function App() {
             <Route path=":presentationId/slide-view/:slideId" element={<ViewSingleSlide />} />
             <Route path=":presentationId/slide-edit/:slideId" element={<EditSlide />} />
 
-            <Route path="presentation-pool/:presentationId" element={<Pool socket={apiSocket} />} />
+            <Route path="presentation-pool/:presentationTitle/:presentationId" element={<Pool socket={apiSocket} />} />
           </Route>
           <Route path="/home" element={<Home />}></Route>
           <Route path="/join-presentation" element={<JoinPresentation socket={apiSocket} />}></Route>
@@ -66,7 +66,7 @@ function App() {
           {/* 
              <Route path="/presentations/:sessionId" element={<MainSection socket={socket} responseData={responseData} setResponseData={setResponseData} setChartData={setChartData} chartData={chartData} correctAnswer={correctAnswer} setCorrectAnswer={setCorrectAnswer} setImage={setImage}></MainSection>}></Route>
           <Route path="/presentations/:sessionId/responses/:slideId" element={<Results responseData={responseData} chartData={chartData} correctAnswer={correctAnswer} image={image}></Results>}></Route> */}
-          <Route path="presentation-display/:presentationId" element={<DisplayPresentation socket={apiSocket} />} />
+          <Route path="presentation-display/:presentationTitle/:presentationId" element={<DisplayPresentation socket={apiSocket} />} />
           <Route path="*" element={<p className="notFound">Page Not Found !!</p>} />
         </Routes>
       </div>
