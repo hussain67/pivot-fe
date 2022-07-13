@@ -1,18 +1,21 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import PollChart from "../../components/PollChart";
 
-const chartData = [["Option", "Answer"]];
+let chartData = [["Option", "Answer"]];
 
-const Pool = ({ socket }) => {
-  const { presntationTitle, presntationId } = useParams();
+const Poll = ({ socket }) => {
+  const navigate = useNavigate();
+  const { presentationTitle } = useParams();
   const [yesCount, setYesCount] = useState(0);
   const [noCount, setNoCount] = useState(0);
   const [noneCount, setNoneCount] = useState(0);
   const [showResult, setShowResult] = useState(false);
+  const [endMessage, setEndMessage] = useState("");
 
+  //console.log(presentationTitle.toLowerCase());
   useEffect(() => {
-    socket.emit("pool-started", { room: "amazon" });
+    socket.emit("poll-started", { room: "amazon" });
   });
 
   useEffect(() => {
@@ -46,15 +49,28 @@ const Pool = ({ socket }) => {
         className="btn btn-block"
         onClick={() => {
           chartData.push(["yes", yesCount], ["no", noCount], ["none", noneCount]);
-
+          socket.emit("chart-data", { chartData, room: presentationTitle.toLowerCase() });
           setShowResult(!showResult);
         }}
       >
         Poll Result
       </button>
+      <button
+        className="btn btn-block"
+        onClick={() => {
+          chartData = [["Option", "Answer"]];
+
+          setTimeout(() => {
+            navigate("/");
+          }, 1000);
+        }}
+      >
+        End Presentation
+      </button>
       {showResult && <PollChart chartData={chartData} />}
+      {endMessage && <h1>{endMessage}</h1>}
     </>
   );
 };
 
-export default Pool;
+export default Poll;

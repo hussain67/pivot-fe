@@ -4,16 +4,7 @@ import { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { FiChevronLeft, FiChevronRight } from "react-icons/fi";
 import { getAllSlides } from "../../utils/api/presentationApi";
-//import io from "socket.io-client";
-//let socket = io.connect("http://localhost:9090");
-/*
-socket.on("current-slide", obj => {
-  console.log(obj);
-});
-socket.on("join-message", msg => {
-  console.log(msg);
-});
-*/
+
 const DisplayPresentation = ({ socket }) => {
   const { presentationTitle, presentationId } = useParams();
   const [slides, setSlides] = useState([]);
@@ -80,8 +71,8 @@ const DisplayPresentation = ({ socket }) => {
               {isStart ? "Start" : "Stop"}
             </button>
             {index === slides.length - 1 && (
-              <button className={"btn"} onClick={() => navigate(`/presentation-pool/${presentationTitle}/${presentationId}`)}>
-                Start Pool
+              <button className={"btn"} onClick={() => navigate(`/presentation-poll/${presentationTitle}/${presentationId}`)}>
+                Start Poll
               </button>
             )}
           </footer>

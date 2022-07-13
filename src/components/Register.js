@@ -102,9 +102,6 @@ function Register(props) {
           </button>
         </p>
       </form>
-      <button type="button" onClick={sendRequest}>
-        Test
-      </button>
     </div>
   );
 }
