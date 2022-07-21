@@ -40,7 +40,7 @@ const NavBar = () => {
                 const response = logoutUser();
                 if (response) {
                   removeItemsFromLocalStorage();
-                  navigate("/home");
+                  navigate("/");
                 }
               }}
             >

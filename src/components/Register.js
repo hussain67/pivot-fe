@@ -1,6 +1,5 @@
 import React, { useEffect } from "react";
 import { useState } from "react";
-//import { userContext } from "../context/userContext";
 import { registerUser, loginUser, getInfo } from "../utils/api/authApi";
 
 import { toast } from "react-toastify";
@@ -15,10 +14,9 @@ const initialState = {
   isLoading: false
 };
 
-function Register(props) {
+function Register() {
   const [values, setValues] = useState(initialState);
   const [user, setUser] = useState("");
-  //const { user, setUser } = useContext(userContext);
   const navigate = useNavigate();
 
   const handleChange = e => {
@@ -53,8 +51,8 @@ function Register(props) {
   useEffect(() => {
     if (user) {
       setTimeout(() => {
-        navigate("/");
-      }, 1000);
+        navigate("/presentation");
+      }, 500);
     }
   }, [user, navigate]);
 
@@ -73,7 +71,7 @@ function Register(props) {
             <label htmlFor="name" className="form__label">
               name
             </label>
-            <input type="text" name="name" className="form__input" value={values.name} onChange={handleChange}></input>
+            <input type="text" name="name" id="name" className="form__input" value={values.name} onChange={handleChange}></input>
           </div>
         )}
 
@@ -81,14 +79,14 @@ function Register(props) {
           <label htmlFor="email" className="form__label">
             email
           </label>
-          <input type="email" name="email" className="form__input" value={values.email} onChange={handleChange}></input>
+          <input type="email" name="email" id="email" className="form__input" value={values.email} onChange={handleChange}></input>
         </div>
 
         <div className="form__row">
           <label htmlFor="password" className="form__label">
             password
           </label>
-          <input type="password" name="password" className="form__input" value={values.password} onChange={handleChange}></input>
+          <input type="password" name="password" id="password" className="form__input" value={values.password} onChange={handleChange}></input>
         </div>
         <button type="submit" className=" btn btn__block" disabled={values.isLoading}>
           {values.isLoading ? "Loading..." : "Submit"}

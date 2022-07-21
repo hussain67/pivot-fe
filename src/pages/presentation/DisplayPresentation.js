@@ -12,19 +12,27 @@ const DisplayPresentation = ({ socket }) => {
   const [isStart, setIsStart] = useState(true);
   const navigate = useNavigate();
 
-  const room = "amazon";
+  const room = presentationTitle.trim().toLocaleLowerCase();
   const username = "presenter";
 
   useEffect(() => {
     getAllSlides(presentationId).then(slides => {
       setSlides(slides);
       console.log(slides);
-      socket.emit("join", { username, room });
+      socket.emit("join", { username, room }, (error, user) => {
+        if (error) {
+          alert(error);
+          console.log(error);
+        } else {
+          console.log(user);
+        }
+      });
     });
-  }, []);
+  }, [presentationId, room, socket]);
+
   const startSlide = () => {
     if (isStart) {
-      socket.emit("current-slide", slides[0]);
+      socket.emit("current-slide", { slide: slides[0] });
       setIndex(0);
       setIsStart(!isStart);
     } else {
@@ -41,8 +49,8 @@ const DisplayPresentation = ({ socket }) => {
       currentIndex = slides.length - 1;
     }
     setIndex(currentIndex);
-    const obj = slides[currentIndex];
-    socket.emit("current-slide", obj);
+    const slide = slides[currentIndex];
+    socket.emit("current-slide", { slide });
   };
 
   const nextSlide = () => {
@@ -52,8 +60,8 @@ const DisplayPresentation = ({ socket }) => {
       currentIndex = 0;
     }
     setIndex(currentIndex);
-    const obj = slides[currentIndex];
-    socket.emit("current-slide", obj);
+    const slide = slides[currentIndex];
+    socket.emit("current-slide", { slide });
   };
 
   return (
@@ -62,16 +70,15 @@ const DisplayPresentation = ({ socket }) => {
         <>
           <div className={`slide__content`} key={slides[index]._id}>
             <h3 className="slide__title">{slides[index].slideTitle}</h3>
-            <p className="slide__body">{slides[index].slideBody}</p>
             <img className="slide__image" src={slides[index].slideImage} alt="" />
-            <p className="slide__question"> {slides[index].slideQuestion}</p>
+            <p className="slide__body">{slides[index].slideBody}</p>
           </div>
           <footer className="slide__footer">
             <button onClick={startSlide} className={"btn"}>
               {isStart ? "Start" : "Stop"}
             </button>
             {index === slides.length - 1 && (
-              <button className={"btn"} onClick={() => navigate(`/presentation-poll/${presentationTitle}/${presentationId}`)}>
+              <button className={"btn"} onClick={() => navigate(`/presentation/presentation-poll/${presentationTitle}/${presentationId}`)}>
                 Start Poll
               </button>
             )}

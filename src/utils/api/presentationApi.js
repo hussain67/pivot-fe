@@ -28,7 +28,9 @@ export const getAllPresentations = async () => {
     console.log(response.data);
     return response.data;
   } catch (error) {
-    console.log(error);
+    console.log(error.response);
+    toast.error("Please login again");
+    return error.response.data;
   }
 };
 export const editPresentationById = async (id, title) => {
@@ -109,6 +111,6 @@ export const getAllSlides = async id => {
     // console.log(response);
     return response.data;
   } catch (error) {
-    console.log(error);
+    return error.response.status;
   }
 };

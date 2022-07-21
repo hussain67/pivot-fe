@@ -38,9 +38,7 @@ const EditSlide = () => {
   const handleSubmit = e => {
     e.preventDefault();
     updateSlideById(presentationId, slideId, slide).then(slide => {
-      // console.log(slideId);
       if (slide) {
-        // setSlide(initialState);
         navigate(`/${presentationId}/slide-view/${slideId}`);
       }
     });
@@ -65,19 +63,14 @@ const EditSlide = () => {
                 </label>
                 <textarea type="text" name="slideBody" className="form__input form__body" onChange={handleChange} value={slide.slideBody} />
               </div>
+              <label htmlFor="image" className="form__label">
+                Image
+              </label>
               <img className="view-slide__image" src={slide.slideImage} alt="" />
               <div className="form__row">
-                <label htmlFor="image" className="form__label">
-                  Image
-                </label>
                 <input type="file" id="image" accept="image/*" onChange={handleImageUpload} />
               </div>
-              <div className="form__row">
-                <label htmlFor="question" className="form__label">
-                  Question:
-                </label>
-                <input type="text" name="slideQuestion" className="form__input" onChange={handleChange} value={slide.slideQuestion} />
-              </div>
+
               <button type="submit" className="btn btn__block btn-create-slide">
                 Save Updates
               </button>

@@ -37,7 +37,7 @@ const CreatePresentation = () => {
     setInput("");
   };
   const createSlides = id => {
-    navigate(`/slide-create/${id}`);
+    navigate(`/presentation/slide-create/${id}`);
   };
   const editPresentation = (id, title) => {
     return editPresentationById(id, title).then(presentation => {
@@ -80,7 +80,7 @@ const CreatePresentation = () => {
   }, []);
 
   return (
-    <Page title={"Create-presentation"}>
+    <Page title={"Presentation-create"}>
       <div className="presentation-create">
         <form className="presentation-create__form" onSubmit={handleSubmit}>
           <div className="presentation-title">

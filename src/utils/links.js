@@ -1,9 +1,7 @@
 const links = [
-  { id: 1, text: "stats", path: "/" },
-  { id: 2, text: "profile", path: "profile" },
-  { id: 3, text: "create", path: "create" },
-
-  { id: 4, text: "display", path: "presentation-display" }
+  { id: 1, text: "Stats", path: "/presentation" },
+  { id: 2, text: "Profile", path: "profile" },
+  { id: 3, text: "Create", path: "create" }
 ];
 
 export default links;

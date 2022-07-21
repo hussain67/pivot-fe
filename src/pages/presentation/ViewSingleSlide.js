@@ -20,16 +20,16 @@ const ViewSingleSlide = () => {
   };
   return (
     <div>
-      <p>
+      <div className="slide__link">
         <Link to={`/slide-create/${presentationId}`}>
           {" "}
           &laquo;<small>Back to slides </small>{" "}
         </Link>
-      </p>
+      </div>
       {slide && (
-        <div className="view-slide">
-          <div className="view-slide__header">
-            <span className="view-slide__title">{slide.slideTitle}</span>
+        <div className="slide">
+          <div className="slide__header">
+            <span className="slide__title">{slide.slideTitle}</span>
             <div className="btn-container">
               <button
                 className="btn btn-edit"
@@ -45,9 +45,8 @@ const ViewSingleSlide = () => {
             </div>
           </div>
 
-          <p className="view-slide__body">{slide.slideBody}</p>
-          <img className="view-slide__image" src={slide.slideImage} alt="" />
-          <h3 className="view-slide__question">{slide.slideQuestion}</h3>
+          <img className="slide__image" src={slide.slideImage} alt="" />
+          <p className="slide__body">{slide.slideBody}</p>
         </div>
       )}
     </div>

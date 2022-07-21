@@ -1,12 +1,5 @@
 import Axios from "axios";
 import { toast } from "react-toastify";
-const pivotApi = "API";
-
-export const getSlides = sessionId => {
-  return Axios.get(`/presentations/${sessionId}`).then(res => {
-    return res.data.presentation;
-  });
-};
 
 export const registerUser = async (name, email, password) => {
   try {
@@ -56,4 +49,4 @@ export const getInfo = async () => {
   }
 };
 
-export default pivotApi;
+//export default pivotApi;

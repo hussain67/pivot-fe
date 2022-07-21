@@ -1,13 +1,14 @@
 import React from "react";
 import HomeMain from "../components/HomeMain";
-import Nav from "../components/Nav";
+import Nav from "../components/NavHome";
+import Page from "../components/Page";
 
-const Home = () => {
+const Home = ({ socket }) => {
   return (
-    <>
+    <Page title={"Home"}>
       <Nav />
-      <HomeMain />
-    </>
+      <HomeMain socket={socket} />
+    </Page>
   );
 };
 

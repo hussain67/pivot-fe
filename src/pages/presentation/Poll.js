@@ -11,11 +11,11 @@ const Poll = ({ socket }) => {
   const [noCount, setNoCount] = useState(0);
   const [noneCount, setNoneCount] = useState(0);
   const [showResult, setShowResult] = useState(false);
-  const [endMessage, setEndMessage] = useState("");
+  const room = presentationTitle.trim().toLocaleLowerCase();
+  const poolQuestion = "Amazon rain forest is in danger ? ";
 
-  //console.log(presentationTitle.toLowerCase());
   useEffect(() => {
-    socket.emit("poll-started", { room: "amazon" });
+    socket.emit("poll-started", { poolQuestion });
   });
 
   useEffect(() => {
@@ -68,7 +68,6 @@ const Poll = ({ socket }) => {
         End Presentation
       </button>
       {showResult && <PollChart chartData={chartData} />}
-      {endMessage && <h1>{endMessage}</h1>}
     </>
   );
 };
