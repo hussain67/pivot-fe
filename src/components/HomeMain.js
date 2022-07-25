@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { getSchedule } from "../utils/api/scheduleApi";
+import { getScheduleParticipant } from "../utils/api/scheduleApi";
 import PresentationSchedule from "./PresentationSchedule";
 import Register from "./Register";
 
@@ -12,7 +12,7 @@ function HomeMain({ socket }) {
   const [joiningPresentation, setJoiningPresentation] = useState(false);
 
   useEffect(() => {
-    getSchedule().then(schedule => {
+    getScheduleParticipant().then(schedule => {
       setSchedule(schedule);
     });
 

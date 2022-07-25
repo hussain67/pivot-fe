@@ -29,8 +29,7 @@ export const getAllPresentations = async () => {
     return response.data;
   } catch (error) {
     console.log(error.response);
-    toast.error("Please login again");
-    return error.response.data;
+    //return error.response.data;
   }
 };
 export const editPresentationById = async (id, title) => {

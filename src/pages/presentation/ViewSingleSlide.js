@@ -16,12 +16,12 @@ const ViewSingleSlide = () => {
 
   const deleteSlide = async () => {
     await deleteSlideById(presentationId, slideId);
-    navigate(`/slide-create/${presentationId}`);
+    navigate(`/presentation/slide-create/${presentationId}`);
   };
   return (
     <div>
       <div className="slide__link">
-        <Link to={`/slide-create/${presentationId}`}>
+        <Link to={`/presentation/slide-create/${presentationId}`}>
           {" "}
           &laquo;<small>Back to slides </small>{" "}
         </Link>
@@ -34,7 +34,7 @@ const ViewSingleSlide = () => {
               <button
                 className="btn btn-edit"
                 onClick={() => {
-                  navigate(`/${presentationId}/slide-edit/${slideId}`);
+                  navigate(`/presentation/${presentationId}/slide-edit/${slideId}`);
                 }}
               >
                 <AiOutlineEdit />

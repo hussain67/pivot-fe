@@ -9,12 +9,13 @@ const PresentationSchedule = ({ schedule, setPresentationName, setJoiningPresent
   return (
     <div>
       {schedule.map(item => {
-        const { _id, name: presentationName } = item;
+        const { _id, title, time } = item;
         return (
           <div key={_id} className="presentation-list">
-            <span>{presentationName} </span>
+            <span>{title} </span>
+            <span>{time}</span>
             <div className="btn-container">
-              <button className="btn btn-view" onClick={() => handleClick(presentationName)}>
+              <button className="btn btn-view" onClick={() => handleClick(title)}>
                 Join Presentation
               </button>
             </div>

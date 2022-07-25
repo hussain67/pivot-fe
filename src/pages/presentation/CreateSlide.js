@@ -7,8 +7,7 @@ import { createSlide, getPresentationById, uploadSlideImage } from "../../utils/
 const initialState = {
   slideTitle: "",
   slideBody: "",
-  slideImage: "",
-  slideQuestion: ""
+  slideImage: ""
 };
 const Slides = () => {
   const { id } = useParams();
@@ -43,7 +42,7 @@ const Slides = () => {
       // console.log(slideId);
       if (slide) {
         setSlide(initialState);
-        navigate(`/${id}/slide-view/${slideId}`);
+        navigate(`/presentation/${id}/slide-view/${slideId}`);
       }
     });
   };
@@ -75,12 +74,7 @@ const Slides = () => {
                   </label>
                   <input type="file" id="image" accept="image/*" onChange={handleImageUpload} />
                 </div>
-                <div className="form__row">
-                  <label htmlFor="question" className="form__label">
-                    Question:
-                  </label>
-                  <input type="text" name="slideQuestion" className="form__input" onChange={handleChange} value={slide.slideQuestion} />
-                </div>
+
                 <button type="submit" className="btn btn__block btn-create-slide">
                   Submit
                 </button>
@@ -93,7 +87,7 @@ const Slides = () => {
               slides.map(slide => {
                 return (
                   <li>
-                    <Link to={`/${id}/slide-view/${slide._id}`} key={slide._id}>
+                    <Link to={`/presentation/${id}/slide-view/${slide._id}`} key={slide._id}>
                       {slide.slideTitle}
                     </Link>
                   </li>

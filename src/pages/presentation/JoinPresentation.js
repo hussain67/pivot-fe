@@ -18,10 +18,10 @@ const JoinPresentation = ({ socket }) => {
   useEffect(() => {
     console.log(slide);
   }, [slide]);
+
   const endPresentation = () => {
     setTimeout(() => {
       setEndMessage("Presentation will end shortly");
-
       setTimeout(() => {
         navigate("/");
       }, 3000);

@@ -39,7 +39,7 @@ const EditSlide = () => {
     e.preventDefault();
     updateSlideById(presentationId, slideId, slide).then(slide => {
       if (slide) {
-        navigate(`/${presentationId}/slide-view/${slideId}`);
+        navigate(`/presentation/${presentationId}/slide-view/${slideId}`);
       }
     });
   };
