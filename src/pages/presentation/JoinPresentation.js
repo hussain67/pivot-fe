@@ -16,6 +16,18 @@ const JoinPresentation = ({ socket }) => {
   const room = presentationName.trim().toLocaleLowerCase();
 
   useEffect(() => {
+    socket.emit("join", { username, room: presentationName }, (error, user) => {
+      if (error) {
+        alert(error);
+        console.log(error);
+      } else {
+        console.log(user);
+        //
+      }
+    });
+  }, []);
+
+  useEffect(() => {
     console.log(slide);
   }, [slide]);
 
@@ -23,6 +35,7 @@ const JoinPresentation = ({ socket }) => {
     setTimeout(() => {
       setEndMessage("Presentation will end shortly");
       setTimeout(() => {
+        socket.emit("remove-user");
         navigate("/");
       }, 3000);
     }, 4000);
@@ -36,6 +49,7 @@ const JoinPresentation = ({ socket }) => {
       //socket.leave(room.toLocaleLowerCase());
     });
   }, [socket]);
+
   socket.on("join-message", msg => {
     console.log(msg);
   });

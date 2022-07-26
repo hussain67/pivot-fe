@@ -19,6 +19,7 @@ function HomeMain({ socket }) {
     console.log(schedule);
   }, []);
 
+  /*
   const handleSubmit = e => {
     e.preventDefault();
     socket.emit("join", { username, room: presentationName }, (error, user) => {
@@ -30,6 +31,11 @@ function HomeMain({ socket }) {
         navigate(`/join-presentation/${username}/${presentationName}`);
       }
     });
+  };
+  */
+  const handleSubmit = e => {
+    e.preventDefault();
+    navigate(`/join-presentation/${username}/${presentationName}`);
   };
   return (
     <div className="home-main">

@@ -72,7 +72,7 @@ const Stats = () => {
                   <span>{title} </span>
                   <span>{time}</span>
                   <div className="btn-container">
-                    <button className="btn btn-view" onClick={() => navigate(`presentation-display/${presentation.title}/${presentationId}`)}>
+                    <button className="btn btn-view" onClick={() => navigate(`presentation-display/${title}/${presentationId}`)}>
                       Display
                     </button>
                     <button className="btn btn-delete" onClick={() => removeSchedule(_id)}>

@@ -35,13 +35,13 @@ const Poll = ({ socket }) => {
       }
     });
   }, [socket]);
-
+  /*
   useEffect(() => {
     console.log(yesCount, "yes");
     console.log(noCount, "no");
     console.log(noneCount, "none");
   }, [yesCount, noCount, noneCount]);
-
+*/
   return (
     <>
       {!showResult && <div>Poll In Progress</div>}
@@ -59,6 +59,7 @@ const Poll = ({ socket }) => {
         className="btn btn-block"
         onClick={() => {
           chartData = [["Option", "Answer"]];
+          socket.emit("remove-user");
 
           setTimeout(() => {
             navigate("/");

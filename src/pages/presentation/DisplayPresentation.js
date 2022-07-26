@@ -36,7 +36,8 @@ const DisplayPresentation = ({ socket }) => {
       setIndex(0);
       setIsStart(!isStart);
     } else {
-      socket.emit("end-message", "Presentation has ended");
+      //socket.emit("end-message", "Presentation has ended");
+      socket.emit("remove-user");
       setSlides([]);
 
       setIsStart(!isStart);
