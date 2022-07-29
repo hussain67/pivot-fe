@@ -39,8 +39,8 @@ const DisplayPresentation = ({ socket }) => {
       //socket.emit("end-message", "Presentation has ended");
       socket.emit("remove-user");
       setSlides([]);
-
       setIsStart(!isStart);
+      navigate("/presentation");
     }
   };
   const prevSlide = () => {
@@ -79,7 +79,7 @@ const DisplayPresentation = ({ socket }) => {
               {isStart ? "Start" : "Stop"}
             </button>
             {index === slides.length - 1 && (
-              <button className={"btn"} onClick={() => navigate(`/presentation/presentation-poll/${presentationTitle}/${presentationId}`)}>
+              <button className={"btn"} onClick={() => navigate(`/presentation-poll/${presentationTitle}/${presentationId}`)}>
                 Start Poll
               </button>
             )}

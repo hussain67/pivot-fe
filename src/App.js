@@ -48,11 +48,11 @@ function App() {
             <Route path="slide-create/:id" element={<CreateSlide />} />
             <Route path=":presentationId/slide-view/:slideId" element={<ViewSingleSlide />} />
             <Route path=":presentationId/slide-edit/:slideId" element={<EditSlide />} />
-            <Route path="presentation-display/:presentationTitle/:presentationId" element={<DisplayPresentation socket={apiSocket} />} />
-            <Route path="presentation-poll/:presentationTitle/:presentationId" element={<Poll socket={apiSocket} />} />
           </Route>
           <Route path="/" element={<Home socket={apiSocket} />}></Route>
+          <Route path="/presentation-display/:presentationTitle/:presentationId" element={<DisplayPresentation socket={apiSocket} />} />
           <Route path="/join-presentation/:username/:presentationName" element={<JoinPresentation socket={apiSocket} />}></Route>
+          <Route path="/presentation-poll/:presentationTitle/:presentationId" element={<Poll socket={apiSocket} />} />
 
           <Route path="*" element={<p className="notFound">Page Not Found !!</p>} />
         </Routes>

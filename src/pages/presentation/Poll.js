@@ -62,7 +62,7 @@ const Poll = ({ socket }) => {
           socket.emit("remove-user");
 
           setTimeout(() => {
-            navigate("/");
+            navigate("/presentation");
           }, 1000);
         }}
       >

@@ -13,7 +13,7 @@ const JoinPresentation = ({ socket }) => {
 
   //room = presentationTitle
   const { username, presentationName } = useParams();
-  const room = presentationName.trim().toLocaleLowerCase();
+  const room = presentationName.trim().toLowerCase();
 
   useEffect(() => {
     socket.emit("join", { username, room: presentationName }, (error, user) => {
@@ -26,10 +26,6 @@ const JoinPresentation = ({ socket }) => {
       }
     });
   }, []);
-
-  useEffect(() => {
-    console.log(slide);
-  }, [slide]);
 
   const endPresentation = () => {
     setTimeout(() => {
@@ -48,14 +44,14 @@ const JoinPresentation = ({ socket }) => {
       endPresentation();
       //socket.leave(room.toLocaleLowerCase());
     });
+    socket.on("current-slide", ({ slide, room }) => {
+      if (presentationName.trim().toLowerCase() === room) setSlide(slide);
+      console.log(slide);
+    });
   }, [socket]);
 
   socket.on("join-message", msg => {
     console.log(msg);
-  });
-
-  socket.on("current-slide", obj => {
-    setSlide(obj);
   });
 
   socket.on("end-message", msg => {
