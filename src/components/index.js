@@ -1,5 +1,5 @@
 import BigSidebar from "./BigSidebar";
-import NavBar from "./NavPresentation";
+import NavBar from "./NavPresenter";
 import Register from "./Register";
 import SmallSidebar from "./SmallSidebar";
 

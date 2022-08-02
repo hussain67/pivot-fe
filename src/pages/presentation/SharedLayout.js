@@ -1,7 +1,8 @@
 import React from "react";
 import { useState } from "react";
 import { Outlet } from "react-router-dom";
-import { BigSidebar, NavBar, SmallSidebar } from "../../components";
+import { BigSidebar, SmallSidebar } from "../../components";
+import NavPresenter from "../../components/NavPresenter";
 import { userContext } from "../../context/userContext";
 const SharedLayout = () => {
   const [showSidebar, setShowSidebar] = useState(false);
@@ -12,7 +13,7 @@ const SharedLayout = () => {
           <SmallSidebar />
           <BigSidebar />
           <div>
-            <NavBar />
+            <NavPresenter />
             <div>
               <Outlet />
             </div>

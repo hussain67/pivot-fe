@@ -2,11 +2,11 @@ import "./App.css";
 import React, { useEffect, useState } from "react";
 import io from "socket.io-client";
 
-import Results from "./components/Results";
+//import Results from "./components/Results";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import { Stats, Profile, EditSlide, ViewSingleSlide, CreatePresentation, DisplayPresentation, CreateSlide, SharedLayout, JoinPresentation } from "./pages/presentation";
-import { Slide, ToastContainer } from "react-toastify";
+import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import ProtectedRoute from "./pages/ProtectedRoutes";
 import Poll from "./pages/presentation/Poll";

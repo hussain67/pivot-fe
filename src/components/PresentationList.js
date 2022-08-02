@@ -4,7 +4,7 @@ import { AiOutlineEdit } from "react-icons/ai";
 
 const PresentationList = ({ presentations, deletePresentation, setEdit, createSlides }) => {
   return (
-    <div>
+    <div className="presentation-list-container">
       {presentations.map(presentation => {
         const { _id, title } = presentation;
         return (

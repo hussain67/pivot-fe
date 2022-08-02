@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useState } from "react";
-import { registerUser, loginUser, getInfo } from "../utils/api/authApi";
+import { registerUser, loginUser } from "../utils/api/authApi";
 
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
@@ -59,13 +59,11 @@ function Register() {
   const toggleRegistered = () => {
     setValues({ ...values, isRegistered: !values.isRegistered });
   };
-  const sendRequest = () => {
-    getInfo();
-  };
+
   return (
     <div className="form">
       <form className="form__container" onSubmit={onSubmit}>
-        <h3>{values.isRegistered ? "Login" : "Register"} </h3>
+        <h3>{values.isRegistered ? "Presenter Login" : "Presenter Register"} </h3>
         {!values.isRegistered && (
           <div className="form__row">
             <label htmlFor="name" className="form__label">

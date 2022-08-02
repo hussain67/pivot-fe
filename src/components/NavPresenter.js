@@ -6,7 +6,7 @@ import { removeItemsFromLocalStorage, getItemFromLocalStorage } from "../utils/l
 import { userContext } from "../context/userContext";
 import { useEffect } from "react";
 
-const NavBar = () => {
+const NavPresenter = () => {
   const { showSidebar, setShowSidebar } = useContext(userContext);
   const [showLogout, setShowLogout] = useState(false);
   const navigate = useNavigate();
@@ -22,12 +22,12 @@ const NavBar = () => {
   return (
     <div className="navbar">
       <div className="navbar__center">
-        <button type="button" className="btn-toggle" onClick={toggleSidebar}>
+        <button type="button" className="btn btn-toggle" onClick={toggleSidebar}>
           <FaAlignLeft />
         </button>
         <h1 className="navbar__text">Dashboard</h1>
         <div className="navbar__btn-container" onClick={() => setShowLogout(!showLogout)}>
-          <button type="button" className="btn-user">
+          <button type="button" className="btn btn-user">
             <FaUserCircle />
             {user?.name}
             <FaCaretDown />
@@ -35,7 +35,7 @@ const NavBar = () => {
           <div className={showLogout ? "navbar-dropdown navbar-dropdown--show" : "navbar-dropdown"}>
             <button
               type="button"
-              className="btn-dropdown"
+              className="btn btn-dropdown"
               onClick={() => {
                 const response = logoutUser();
                 if (response) {
@@ -53,4 +53,4 @@ const NavBar = () => {
   );
 };
 
-export default NavBar;
+export default NavPresenter;

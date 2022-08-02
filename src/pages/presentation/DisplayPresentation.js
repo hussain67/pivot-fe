@@ -9,7 +9,7 @@ const DisplayPresentation = ({ socket }) => {
   const { presentationTitle, presentationId } = useParams();
   const [slides, setSlides] = useState([]);
   const [index, setIndex] = useState(0);
-  const [isStart, setIsStart] = useState(true);
+  const [isStarted, setIsStart] = useState(true);
   const navigate = useNavigate();
 
   const room = presentationTitle.trim().toLocaleLowerCase();
@@ -31,15 +31,15 @@ const DisplayPresentation = ({ socket }) => {
   }, [presentationId, room, socket]);
 
   const startSlide = () => {
-    if (isStart) {
+    if (isStarted) {
       socket.emit("current-slide", { slide: slides[0] });
       setIndex(0);
-      setIsStart(!isStart);
+      setIsStart(!isStarted);
     } else {
       //socket.emit("end-message", "Presentation has ended");
       socket.emit("remove-user");
       setSlides([]);
-      setIsStart(!isStart);
+      setIsStart(!isStarted);
       navigate("/presentation");
     }
   };
@@ -75,19 +75,19 @@ const DisplayPresentation = ({ socket }) => {
             <p className="slide__body">{slides[index].slideBody}</p>
           </div>
           <footer className="slide__footer">
-            <button onClick={startSlide} className={"btn"}>
-              {isStart ? "Start" : "Stop"}
+            <button onClick={startSlide} className={"btn btn__start"}>
+              {isStarted ? "Start Presentation" : "Stop Presentation"}
             </button>
             {index === slides.length - 1 && (
-              <button className={"btn"} onClick={() => navigate(`/presentation-poll/${presentationTitle}/${presentationId}`)}>
+              <button className="btn btn__pool" onClick={() => navigate(`/presentation-poll/${presentationTitle}/${presentationId}`)}>
                 Start Poll
               </button>
             )}
           </footer>
-          <button className="prev" onClick={prevSlide}>
+          <button className="btn btn-prev" onClick={prevSlide} disabled={isStarted}>
             <FiChevronLeft />
           </button>
-          <button className="next" onClick={nextSlide}>
+          <button className="btn btn-next" onClick={nextSlide} disabled={isStarted}>
             <FiChevronRight />
           </button>
         </>

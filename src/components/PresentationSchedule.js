@@ -1,5 +1,5 @@
-import moment from "moment";
 import React from "react";
+import moment from "moment";
 
 const PresentationSchedule = ({ schedule, setPresentationName, setJoiningPresentation }) => {
   const handleClick = presentationName => {
@@ -11,17 +11,16 @@ const PresentationSchedule = ({ schedule, setPresentationName, setJoiningPresent
     <div>
       {schedule.map(item => {
         const { _id, title, time } = item;
-
         const dateFormated = moment(time).format("D/ M/ Y, h:mm A");
+
         return (
           <div key={_id} className="presentation-list">
             <span>{title} </span>
             <span>{dateFormated}</span>
-            <div className="btn-container">
-              <button className="btn btn-view" onClick={() => handleClick(title)}>
-                Join Presentation
-              </button>
-            </div>
+
+            <button className="btn btn-view" onClick={() => handleClick(title)}>
+              Join Presentation
+            </button>
           </div>
         );
       })}

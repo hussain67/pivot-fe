@@ -29,10 +29,8 @@ const CreatePresentation = () => {
         }
       });
     } else if (isEdit) {
-      //console.log("edit");
       editPresentation(idEdit, input);
       setIsEdit(false);
-      // editPresentation();
     }
     setInput("");
   };
@@ -65,7 +63,7 @@ const CreatePresentation = () => {
       if (presentation) {
         setPresentations(
           presentations.filter(presentation => {
-            return presentation._id != id;
+            return presentation._id !== id;
           })
         );
       }
@@ -86,8 +84,8 @@ const CreatePresentation = () => {
           <div className="presentation-title">
             <input type="text" name="presentation" className="" onChange={handleChange} value={input} placeholder="Presentation title" />
           </div>
-          <button type="submit" className="btn-create presentation-btn">
-            {isEdit ? "Edit" : "Create"}
+          <button type="submit" className="btn btn-create presentation-btn">
+            {isEdit ? "Edit Prrsentation" : "Create Presentation"}
           </button>
         </form>
 

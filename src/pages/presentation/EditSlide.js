@@ -66,7 +66,7 @@ const EditSlide = () => {
               <label htmlFor="image" className="form__label">
                 Image
               </label>
-              <img className="view-slide__image" src={slide.slideImage} alt="" />
+              <img src={slide.slideImage} alt="" />
               <div className="form__row">
                 <input type="file" id="image" accept="image/*" onChange={handleImageUpload} />
               </div>

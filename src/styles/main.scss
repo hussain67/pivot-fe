@@ -1,11 +1,11 @@
 @import "./abstruct/variables";
 @import "./base/base";
 @import "./components/btn";
+@import "./components/dots-loading";
 @import "./components/page";
 @import "./components/form";
-@import "./components/nav";
+@import "./components/nav-common";
 @import "./components/home-main";
-@import "./components/register";
 @import "./components/dashboard";
 @import "./components/sidebar";
 @import "./components/navlink";
@@ -13,3 +13,4 @@
 @import "./components/presentation";
 @import "./components/create-slide";
 @import "./components/slide";
+@import "./components/poll";

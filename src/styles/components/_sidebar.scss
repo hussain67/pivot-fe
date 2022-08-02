@@ -2,7 +2,7 @@
   @media screen and(min-width:992px) {
     display: none;
   }
-  background-color: $color-background-white;
+  background-color: $color-background-list;
   position: fixed;
   top: 0;
   bottom: 0;
@@ -24,7 +24,7 @@
 }
 
 .sidebar-big {
-  background-color: $color-background-white;
+  background-color: $color-background-list;
   //position: relative;
   top: 0;
   bottom: 0;

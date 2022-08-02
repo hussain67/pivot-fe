@@ -1,17 +1,30 @@
 .home-main {
+  margin: 0 auto;
   display: grid;
-  grid-template-columns: 50% 50%;
-  height: 100%;
-  width: 100%;
-}
+  grid-template-columns: 1fr 1fr;
+  column-gap: 3rem;
 
-.home-main__left {
-  background-color: antiquewhite;
-}
-
-.home-main__right {
-  background-color: rgb(236, 239, 243);
-  display: grid;
   align-items: center;
-  justify-items: center;
+  justify-content: space-evenly;
+  background-color: var($color-background-silver);
+}
+
+.home-hero img {
+  width: 300px;
+  height: auto;
+}
+
+.home-hero-left img {
+  width: 200px;
+  height: auto;
+}
+
+.home-hero-banner {
+  text-align: left;
+}
+.home-hero-info {
+  font-weight: 400;
+  font-size: 20px;
+  padding-top: 15px;
+  padding-bottom: 15px;
 }
