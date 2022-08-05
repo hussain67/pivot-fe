@@ -18,7 +18,7 @@
 
 .btn__block {
   width: 100%;
-  height: 30px;
+  //height: 30px;
 }
 .btn-container {
   display: flex;
@@ -115,6 +115,9 @@
 }
 .btn__hero {
   width: auto;
-  height: 30px;
   letter-spacing: 1px;
+}
+
+.btn__end-presentation {
+  width: 50%;
 }

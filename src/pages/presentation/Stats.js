@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { FaRegTrashAlt } from "react-icons/fa";
 import { DatePicker, TimePicker, MuiPickersUtilsProvider } from "@material-ui/pickers";
-import { alpha } from "@material-ui/core/styles";
 import DateMomentUtils from "@date-io/moment";
 import moment from "moment";
 import Page from "../../components/Page";
@@ -22,8 +21,8 @@ const Stats = () => {
   const [showSelectTime, setShowSelectTime] = useState(false);
   const [schedule, setSchedule] = useState([]);
   const [selectedDate, handleDateChange] = useState(new Date());
-  console.log(selectedDate);
-  console.log(selectedPresentation);
+  // console.log(selectedDate);
+  // console.log(selectedPresentation);
   useEffect(() => {
     getSchedulePresenter().then(schedule => {
       setSchedule(schedule);
@@ -80,8 +79,11 @@ const Stats = () => {
                 const dateFormated = moment(time).format("D/ M/ Y, h:mm A");
                 return (
                   <div key={_id} className="presentation-list">
-                    <span>{title} </span>
-                    <span>{dateFormated}</span>
+                    <div className="presentation-schedule">
+                      <span>{title} </span>
+                      <span>{dateFormated}</span>
+                    </div>
+
                     <div className="btn-container">
                       <button className="btn btn-view" onClick={() => navigate(`/presentation-display/${title}/${presentationId}`)}>
                         Display

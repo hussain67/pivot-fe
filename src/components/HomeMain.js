@@ -4,48 +4,52 @@ import { getScheduleParticipant } from "../utils/api/scheduleApi";
 import PresentationSchedule from "./PresentationSchedule";
 import shareImg from "../img/sharing_articles.svg";
 import Register from "./Register";
-import join from "../img/join.svg";
 
 function HomeMain({ socket }) {
   const navigate = useNavigate();
   const [schedule, setSchedule] = useState([]);
   const [username, setUsername] = useState("");
+  const [usernameExists, setUsernameExists] = useState(false);
   const [presentationName, setPresentationName] = useState("");
   const [joiningPresentation, setJoiningPresentation] = useState(false);
-  const [showSchedule, setShowSchedule] = useState(true);
   const [showLogin, setShowLogin] = useState(false);
-
+  const room = presentationName.trim().toLowerCase();
   useEffect(() => {
     getScheduleParticipant().then(schedule => {
       setSchedule(schedule);
     });
-
-    //console.log(schedule);
   }, []);
 
   const handleSubmit = e => {
     e.preventDefault();
-    navigate(`/join-presentation/${username}/${presentationName}`);
+    socket.emit("join", { username, room }, (error, user) => {
+      if (error) {
+        //alert(error);
+        setUsernameExists(true);
+        //setUsername("");
+      } else {
+        setUsernameExists(false);
+        navigate(`/join-presentation/${username}/${presentationName}`);
+      }
+    });
   };
   return (
     <>
       <div className="home-main">
         <div className="home-main__left">
-          {!showSchedule && (
-            <div className="home-hero-left">
-              <img src={join}></img>
-            </div>
+          {!joiningPresentation && (
+            <>
+              <h2 className="home-main__left-title">Scheduled Presentations</h2>
+              <PresentationSchedule schedule={schedule} setPresentationName={setPresentationName} setJoiningPresentation={setJoiningPresentation} />
+            </>
           )}
-          {showSchedule && !joiningPresentation && <PresentationSchedule schedule={schedule} setPresentationName={setPresentationName} setJoiningPresentation={setJoiningPresentation} />}
 
           {joiningPresentation && (
             <div>
               <div className="form">
                 <form className="form__container" onSubmit={handleSubmit}>
+                  {usernameExists ? <span className="form__alert">This username already taken, choose a diffrent username</span> : "Choose an username"}
                   <div className="form__row">
-                    <label htmlFor="username" className="form__label">
-                      Choose an username
-                    </label>
                     <input
                       type="text"
                       required

@@ -4,7 +4,7 @@ import PollChart from "../../components/PollChart";
 import poolImage from "../../img/poll.jpg";
 import Page from "../../components/Page";
 import LoadingDotsIcon from "../../components/LoadingDotsIcon";
-import NavCommon from "../../components/NavCommon";
+import pivot_logo from "../../img/pivot.logo.jpg";
 
 let chartData = [["Option", "Answer"]];
 
@@ -21,7 +21,9 @@ const Poll = ({ socket }) => {
   const poolQuestion = "Amazon rain forest is in danger ? ";
 
   useEffect(() => {
-    socket.emit("poll-started", { poolQuestion });
+    if (socket) {
+      socket.emit("poll-started", { poolQuestion });
+    }
   }, [socket]);
 
   useEffect(() => {
@@ -29,12 +31,12 @@ const Poll = ({ socket }) => {
       setPollEnded(pollEnded => {
         return !pollEnded;
       });
-    }, 25000);
+    }, 10000);
   }, []);
 
   const processResult = () => {
     chartData.push(["yes", yesCount], ["no", noCount], ["none", noneCount]);
-    socket.emit("chart-data", { chartData, room: presentationTitle.toLowerCase() });
+    socket.emit("poll-result", { chartData, totalCount, room: presentationTitle.toLowerCase() });
   };
   useEffect(() => {
     if (pollEnded) {
@@ -46,66 +48,58 @@ const Poll = ({ socket }) => {
   }, [pollEnded]);
 
   useEffect(() => {
-    socket.on("new-answer", answer => {
-      if (answer) {
-        setTotalCount(count => {
-          return count + 1;
-        });
-      }
-      if (answer === "yes") {
-        setYesCount(count => {
-          return count + 1;
-        });
-      } else if (answer === "no") {
-        setNoCount(count => {
-          return count + 1;
-        });
-      } else {
-        setNoneCount(count => {
-          return count + 1;
-        });
-      }
-    });
+    if (socket) {
+      socket.on("new-answer", answer => {
+        if (answer) {
+          setTotalCount(count => {
+            return count + 1;
+          });
+        }
+        if (answer === "yes") {
+          setYesCount(count => {
+            return count + 1;
+          });
+        } else if (answer === "no") {
+          setNoCount(count => {
+            return count + 1;
+          });
+        } else {
+          setNoneCount(count => {
+            return count + 1;
+          });
+        }
+      });
+    }
   }, [socket]);
 
   return (
-    <Page>
-      <NavCommon />
+    <Page title={"Poll"}>
+      <img className="nav-common-logo" src={pivot_logo} alt="logo" />
+      {!showResult && <h2 className="poll__info">Poll in progress, do not refresh the page</h2>}
       <main className="poll">
         {!showResult && (
-          <section className="poll__running">
-            <div className="poll__img">
-              <img src={poolImage} alt={""} />
-            </div>
+          <>
+            <section className="poll__running">
+              <div className="poll__img">
+                <img src={poolImage} alt={""} />
+              </div>
 
-            <LoadingDotsIcon />
+              <LoadingDotsIcon />
 
-            <div>
-              {" "}
-              <span className="poll-count">{totalCount} </span> poll result received
-            </div>
-          </section>
+              <div className="poll__count">
+                <span className="poll__count__total">{totalCount} </span>
+                <span> poll result received</span>
+              </div>
+            </section>
+          </>
         )}
 
-        {/*
-  <button
-          className="btn btn-block"
-          onClick={() => {
-            chartData.push(["yes", yesCount], ["no", noCount], ["none", noneCount]);
-            socket.emit("chart-data", { chartData, room: presentationTitle.toLowerCase() });
-            setShowResult(!showResult);
-          }}
-        >
-          Poll Result
-        </button>
-
-        */}
-
         {showResult && (
-          <div className="pool__result">
+          <div className="poll__result">
+            <h2>{totalCount} people participated the poll</h2>
             <PollChart chartData={chartData} />
             <button
-              className="btn btn-block"
+              className="btn btn__end-presentation"
               onClick={() => {
                 chartData = [["Option", "Answer"]];
                 socket.emit("remove-user");

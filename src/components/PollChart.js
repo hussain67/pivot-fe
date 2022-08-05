@@ -3,7 +3,7 @@ import { Chart } from "react-google-charts";
 
 const PollChart = ({ chartData }) => {
   const options = {
-    title: "Poll results",
+    title: "",
     is3D: true
   };
   return (

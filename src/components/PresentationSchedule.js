@@ -15,8 +15,10 @@ const PresentationSchedule = ({ schedule, setPresentationName, setJoiningPresent
 
         return (
           <div key={_id} className="presentation-list">
-            <span>{title} </span>
-            <span>{dateFormated}</span>
+            <div className="presentation-schedule">
+              <span>{title} </span>
+              <span>{dateFormated}</span>
+            </div>
 
             <button className="btn btn-view" onClick={() => handleClick(title)}>
               Join Presentation

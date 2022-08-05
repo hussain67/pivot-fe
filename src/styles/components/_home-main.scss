@@ -3,8 +3,6 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   column-gap: 3rem;
-
-  align-items: center;
   justify-content: space-evenly;
   background-color: var($color-background-silver);
 }
@@ -14,11 +12,10 @@
   height: auto;
 }
 
-.home-hero-left img {
-  width: 200px;
-  height: auto;
+.home-main__left-title {
+  color: #3b82f6;
+  margin-bottom: 2rem;
 }
-
 .home-hero-banner {
   text-align: left;
 }

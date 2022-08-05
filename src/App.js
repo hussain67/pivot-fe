@@ -2,7 +2,6 @@ import "./App.css";
 import React, { useEffect, useState } from "react";
 import io from "socket.io-client";
 
-//import Results from "./components/Results";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import { Stats, Profile, EditSlide, ViewSingleSlide, CreatePresentation, DisplayPresentation, CreateSlide, SharedLayout, JoinPresentation } from "./pages/presentation";
@@ -22,11 +21,11 @@ if (!process.env.NODE_ENV || process.env.NODE_ENV === "development") {
 }
 */
 function App() {
-  const [apiSocket, setApiSocket] = useState();
+  const [socket, setSocket] = useState();
 
   useEffect(() => {
     const socket = io.connect("http://localhost:9090");
-    setApiSocket(socket);
+    setSocket(socket);
   }, []);
 
   return (
@@ -49,10 +48,10 @@ function App() {
             <Route path=":presentationId/slide-view/:slideId" element={<ViewSingleSlide />} />
             <Route path=":presentationId/slide-edit/:slideId" element={<EditSlide />} />
           </Route>
-          <Route path="/" element={<Home socket={apiSocket} />}></Route>
-          <Route path="/presentation-display/:presentationTitle/:presentationId" element={<DisplayPresentation socket={apiSocket} />} />
-          <Route path="/join-presentation/:username/:presentationName" element={<JoinPresentation socket={apiSocket} />}></Route>
-          <Route path="/presentation-poll/:presentationTitle/:presentationId" element={<Poll socket={apiSocket} />} />
+          <Route path="/" element={<Home socket={socket} />}></Route>
+          <Route path="/presentation-display/:presentationTitle/:presentationId" element={<DisplayPresentation socket={socket} />} />
+          <Route path="/join-presentation/:username/:presentationName" element={<JoinPresentation socket={socket} />}></Route>
+          <Route path="/presentation-poll/:presentationTitle/:presentationId" element={<Poll socket={socket} />} />
 
           <Route path="*" element={<p className="notFound">Page Not Found !!</p>} />
         </Routes>

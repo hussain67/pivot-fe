@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { FiChevronLeft, FiChevronRight } from "react-icons/fi";
 import { getAllSlides } from "../../utils/api/presentationApi";
+import Page from "../../components/Page";
 
 const DisplayPresentation = ({ socket }) => {
   const { presentationTitle, presentationId } = useParams();
@@ -18,13 +19,12 @@ const DisplayPresentation = ({ socket }) => {
   useEffect(() => {
     getAllSlides(presentationId).then(slides => {
       setSlides(slides);
-      console.log(slides);
       socket.emit("join", { username, room }, (error, user) => {
         if (error) {
           alert(error);
           console.log(error);
         } else {
-          console.log(user);
+          // console.log(user);
         }
       });
     });
@@ -66,33 +66,35 @@ const DisplayPresentation = ({ socket }) => {
   };
 
   return (
-    <section className="slide">
-      {slides.length > 0 && (
-        <>
-          <div className={`slide__content`} key={slides[index]._id}>
-            <h3 className="slide__title">{slides[index].slideTitle}</h3>
-            <img className="slide__image" src={slides[index].slideImage} alt="" />
-            <p className="slide__body">{slides[index].slideBody}</p>
-          </div>
-          <footer className="slide__footer">
-            <button onClick={startSlide} className={"btn btn__start"}>
-              {isStarted ? "Start Presentation" : "Stop Presentation"}
-            </button>
-            {index === slides.length - 1 && (
-              <button className="btn btn__pool" onClick={() => navigate(`/presentation-poll/${presentationTitle}/${presentationId}`)}>
-                Start Poll
+    <Page title={"Presentation-display"}>
+      <section className="slide">
+        {slides.length > 0 && (
+          <>
+            <div className={`slide__content`} key={slides[index]._id}>
+              <h3 className="slide__title">{slides[index].slideTitle}</h3>
+              <img className="slide__image" src={slides[index].slideImage} alt="" />
+              <p className="slide__body">{slides[index].slideBody}</p>
+            </div>
+            <footer className="slide__footer">
+              <button onClick={startSlide} className={"btn btn__start"}>
+                {isStarted ? "Start Presentation" : "Stop Presentation"}
               </button>
-            )}
-          </footer>
-          <button className="btn btn-prev" onClick={prevSlide} disabled={isStarted}>
-            <FiChevronLeft />
-          </button>
-          <button className="btn btn-next" onClick={nextSlide} disabled={isStarted}>
-            <FiChevronRight />
-          </button>
-        </>
-      )}
-    </section>
+              {index === slides.length - 1 && (
+                <button className="btn btn__pool" onClick={() => navigate(`/presentation-poll/${presentationTitle}/${presentationId}`)}>
+                  Start Poll
+                </button>
+              )}
+            </footer>
+            <button className="btn btn-prev" onClick={prevSlide} disabled={isStarted}>
+              <FiChevronLeft />
+            </button>
+            <button className="btn btn-next" onClick={nextSlide} disabled={isStarted}>
+              <FiChevronRight />
+            </button>
+          </>
+        )}
+      </section>
+    </Page>
   );
 };
 

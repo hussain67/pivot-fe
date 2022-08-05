@@ -31,11 +31,11 @@ export const loginUser = async (email, password) => {
 export const logoutUser = async () => {
   try {
     const response = await Axios.post("api/v1/auth/logout");
-    console.log(response.data);
+    // console.log(response.data);
     toast.success(response.data.msg);
     return response.data.msg;
   } catch (error) {
-    console.log(error.response);
+    //console.log(error.response);
     toast.error(error.response.data.msg);
   }
 };

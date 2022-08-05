@@ -18,11 +18,18 @@
   align-items: center;
   background-color: $color-background-list;
   margin-bottom: 15px;
-  padding: 8px 20px;
+  padding: 8px 15px;
   border-radius: 5px;
   justify-content: space-between;
 }
+.presentation-schedule {
+  flex-grow: 2;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  //column-gap: 5rem;
 
+  justify-items: start;
+}
 .presentation-title {
   flex-grow: 2;
 }

@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from "react";
+import { useCallback } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import LoadingDotsIcon from "../../components/LoadingDotsIcon";
 import Page from "../../components/Page";
 import PollChart from "../../components/PollChart";
+import pivot_logo from "../../img/pivot.logo.jpg";
 
 const JoinPresentation = ({ socket }) => {
   const navigate = useNavigate();
@@ -12,24 +14,11 @@ const JoinPresentation = ({ socket }) => {
   const [endMessage, setEndMessage] = useState("");
   const [answer, setAnswer] = useState("");
   const [chartData, setChartData] = useState(null);
-
-  //room = presentationTitle
-  const { username, presentationName } = useParams();
+  const [totalCount, setTotalCount] = useState(0);
+  const { presentationName } = useParams();
   const room = presentationName.trim().toLowerCase();
 
-  useEffect(() => {
-    socket.emit("join", { username, room: presentationName }, (error, user) => {
-      if (error) {
-        alert(error);
-        console.log(error);
-      } else {
-        console.log(user);
-        //
-      }
-    });
-  }, [socket, username, presentationName]);
-
-  const endPresentation = () => {
+  const endPresentation = useCallback(() => {
     setTimeout(() => {
       setEndMessage("Presentation will end shortly");
       setTimeout(() => {
@@ -37,29 +26,24 @@ const JoinPresentation = ({ socket }) => {
         navigate("/");
       }, 3000);
     }, 4000);
-  };
+  });
 
   useEffect(() => {
-    socket.on("new-chart-data", chartData => {
-      console.log(chartData);
-      setChartData(chartData);
-      endPresentation();
-      //socket.leave(room.toLocaleLowerCase());
-    });
-    socket.on("current-slide", ({ slide, room }) => {
-      if (presentationName.trim().toLowerCase() === room) setSlide(slide);
-      console.log(slide);
-    });
-  }, [socket, presentationName]);
-
-  socket.on("end-message", msg => {
-    setEndMessage(msg);
-  });
-  socket.on("new-poll", poolQuestion => {
-    setPoolquestion(poolQuestion);
-    setPollStarted(true);
-    console.log("pollStarted");
-  });
+    if (socket) {
+      socket.on("new-poll-result", ({ chartData, totalCount }) => {
+        setChartData(chartData);
+        setTotalCount(totalCount);
+        endPresentation();
+      });
+      socket.on("current-slide", ({ slide, room }) => {
+        if (presentationName.trim().toLowerCase() === room) setSlide(slide);
+      });
+      socket.on("new-poll", poolQuestion => {
+        setPoolquestion(poolQuestion);
+        setPollStarted(true);
+      });
+    }
+  }, [socket, presentationName, endPresentation]);
 
   const setValue = e => {
     setAnswer(e.target.value);
@@ -72,6 +56,7 @@ const JoinPresentation = ({ socket }) => {
 
   return (
     <Page title={"Presentation"}>
+      <img className="nav-common-logo" src={pivot_logo} alt="logo" />
       <section className="slide ">
         {slide && !pollStarted && !endMessage && (
           <div className={`slide__content`}>
@@ -103,10 +88,18 @@ const JoinPresentation = ({ socket }) => {
             </>
           )}
         </div>
-        {chartData && <PollChart chartData={chartData} />}
+        <div className="poll__result">
+          {chartData && (
+            <>
+              <h2>{totalCount} people participated the poll</h2>
+              <PollChart chartData={chartData} />{" "}
+            </>
+          )}
+        </div>
+
         {!slide && !pollStarted && !endMessage && (
           <>
-            <h1>Wait presentation {room} to start</h1>
+            <h1>Wait for presentation {room} to start</h1>
             <LoadingDotsIcon />
           </>
         )}

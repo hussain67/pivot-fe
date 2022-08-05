@@ -17,6 +17,9 @@
     text-transform: capitalize;
     margin-bottom: 10px;
   }
+  &__alert {
+    color: red;
+  }
 
   &__input {
     width: 100%;

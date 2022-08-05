@@ -4,7 +4,7 @@ import { toast } from "react-toastify";
 export const createPresentation = async title => {
   try {
     const response = await Axios.post("/api/v1/presentations", { title });
-    console.log(response.data);
+    //console.log(response.data);
     toast.success(`Presentation ${response.data.title} created`);
     return response.data;
   } catch (error) {
@@ -25,7 +25,7 @@ export const getPresentationById = async id => {
 export const getAllPresentations = async () => {
   try {
     const response = await Axios.get("/api/v1/presentations");
-    console.log(response.data);
+    //console.log(response.data);
     return response.data;
   } catch (error) {
     console.log(error.response);
@@ -35,7 +35,7 @@ export const getAllPresentations = async () => {
 export const editPresentationById = async (id, title) => {
   try {
     const response = await Axios.patch(`/api/v1/presentations/${id}`, { title });
-    console.log(response.data);
+    // console.log(response.data);
     return response.data;
   } catch (error) {
     console.log(error);
@@ -79,7 +79,7 @@ export const createSlide = async (id, slide) => {
 export const getSlideById = async (presentationId, slideId) => {
   try {
     const response = await Axios.get(`/api/v1/presentations/${presentationId}/slides/${slideId}`);
-    console.log(response);
+    // console.log(response);
     return response.data;
   } catch (error) {
     console.log(error);
@@ -88,7 +88,7 @@ export const getSlideById = async (presentationId, slideId) => {
 export const deleteSlideById = async (presentationId, slideId) => {
   try {
     const response = await Axios.delete(`/api/v1/presentations/${presentationId}/slides/${slideId}`);
-    console.log(response);
+    // console.log(response);
     return response.data;
   } catch (error) {
     console.log(error);
@@ -97,7 +97,7 @@ export const deleteSlideById = async (presentationId, slideId) => {
 export const updateSlideById = async (presentationId, slideId, slide) => {
   try {
     const response = await Axios.patch(`/api/v1/presentations/${presentationId}/slides/${slideId}`, slide);
-    console.log(response);
+    //console.log(response);
     return response.data;
   } catch (error) {
     console.log(error);
