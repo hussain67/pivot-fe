@@ -75,8 +75,9 @@ const Poll = ({ socket }) => {
   return (
     <Page title={"Poll"}>
       <img className="nav-common-logo" src={pivot_logo} alt="logo" />
-      {!showResult && <h2 className="poll__info">Poll in progress, do not refresh the page</h2>}
       <main className="poll">
+        {!showResult && <h2 className="poll__info">Poll in progress, do not refresh the page</h2>}
+
         {!showResult && (
           <>
             <section className="poll__running">
@@ -96,21 +97,23 @@ const Poll = ({ socket }) => {
 
         {showResult && (
           <div className="poll__result">
-            <h2>{totalCount} people participated the poll</h2>
-            <PollChart chartData={chartData} />
-            <button
-              className="btn btn__end-presentation"
-              onClick={() => {
-                chartData = [["Option", "Answer"]];
-                socket.emit("remove-user");
+            <div className="poll__result__container">
+              <h2>{totalCount} people participated in sthe poll</h2>
+              <PollChart chartData={chartData} />
+              <button
+                className="btn btn__end-presentation"
+                onClick={() => {
+                  chartData = [["Option", "Answer"]];
+                  socket.emit("remove-user");
 
-                setTimeout(() => {
-                  navigate("/presentation");
-                }, 1000);
-              }}
-            >
-              End Presentation
-            </button>
+                  setTimeout(() => {
+                    navigate("/presentation");
+                  }, 1000);
+                }}
+              >
+                End Presentation
+              </button>
+            </div>
           </div>
         )}
       </main>

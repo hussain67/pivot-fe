@@ -23,12 +23,12 @@
   justify-content: space-between;
 }
 .presentation-schedule {
-  flex-grow: 2;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  //column-gap: 5rem;
-
   justify-items: start;
+  text-align: start;
+  @include atLarge {
+  }
 }
 .presentation-title {
   flex-grow: 2;

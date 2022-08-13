@@ -21,8 +21,7 @@ const Stats = () => {
   const [showSelectTime, setShowSelectTime] = useState(false);
   const [schedule, setSchedule] = useState([]);
   const [selectedDate, handleDateChange] = useState(new Date());
-  // console.log(selectedDate);
-  // console.log(selectedPresentation);
+
   useEffect(() => {
     getSchedulePresenter().then(schedule => {
       setSchedule(schedule);
@@ -36,7 +35,9 @@ const Stats = () => {
   }, []);
 
   useEffect(() => {
-    setSelectedPresentation({ ...selectedPresentation, time: selectedDate._d });
+    setSelectedPresentation(p => {
+      return { ...p, time: selectedDate._d };
+    });
   }, [selectedDate]);
 
   const handleSelectedPresentation = (title, id) => {
@@ -68,7 +69,7 @@ const Stats = () => {
 
   return (
     <Page title={"Presentation-stats"}>
-      <div className="page-section presentation-stats">
+      <div className="presentation-stats">
         <div className="page-section">
           {schedule.length > 0 ? <h2 className="page-section-title">Scheduled presentations</h2> : ""}
 

@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import Page from "../../components/Page";
 import PresentationList from "../../components/PresentationList";
 import { createPresentation, getAllPresentations, deletePresentationById, editPresentationById } from "../../utils/api/presentationApi";
 
-import { useNavigate } from "react-router-dom";
 import { addItemToLocalStorage } from "../../utils/localstorage";
 
 const CreatePresentation = () => {
@@ -12,7 +12,7 @@ const CreatePresentation = () => {
   const [presentations, setPresentations] = useState([]);
   const [isEdit, setIsEdit] = useState(false);
   const [idEdit, setIdEdit] = useState("");
-  const [presentationName, setPresentationName] = useState(null);
+  //const [presentationName, setPresentationName] = useState(null);
 
   const handleChange = e => {
     setInput(e.target.value);
@@ -24,11 +24,13 @@ const CreatePresentation = () => {
       createPresentation(input).then(presentation => {
         if (presentation) {
           addItemToLocalStorage("presentationName", presentation.title);
-          setPresentationName(presentation);
+          // setPresentationName(presentation);
           setPresentations([...presentations, presentation]);
         }
       });
-    } else if (isEdit) {
+    }
+
+    if (isEdit) {
       editPresentation(idEdit, input);
       setIsEdit(false);
     }

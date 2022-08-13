@@ -14,19 +14,26 @@ function HomeMain({ socket }) {
   const [joiningPresentation, setJoiningPresentation] = useState(false);
   const [showLogin, setShowLogin] = useState(false);
   const room = presentationName.trim().toLowerCase();
+
   useEffect(() => {
+    let mounted = true;
+    console.log("First Mount");
     getScheduleParticipant().then(schedule => {
-      setSchedule(schedule);
+      if (mounted) {
+        setSchedule(schedule);
+      }
     });
+    return () => {
+      console.log("Cleanup schedule");
+      mounted = false;
+    };
   }, []);
 
   const handleSubmit = e => {
     e.preventDefault();
     socket.emit("join", { username, room }, (error, user) => {
       if (error) {
-        //alert(error);
         setUsernameExists(true);
-        //setUsername("");
       } else {
         setUsernameExists(false);
         navigate(`/join-presentation/${username}/${presentationName}`);

@@ -1,5 +1,6 @@
 @import "./abstruct/variables";
 @import "./base/base";
+@import "./base/mixins";
 @import "./components/btn";
 @import "./components/dots-loading";
 @import "./components/page";
@@ -14,3 +15,4 @@
 @import "./components/create-slide";
 @import "./components/slide";
 @import "./components/poll";
+@import "./components/join-presentation";

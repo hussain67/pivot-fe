@@ -21,7 +21,7 @@ const Slides = () => {
       setPresentation(presentation);
       setSlides(presentation.slides);
     });
-  }, []);
+  }, [id]);
   const handleChange = e => {
     const name = e.target.name;
     const value = e.target.value;
@@ -49,51 +49,49 @@ const Slides = () => {
 
   return (
     <Page title={"Create-slide"}>
-      <div className="page-section">
-        <h1>Presentation: {presentation.title}</h1>
-        <div className="create-slide">
-          <div className="create-slide__create">
-            <h1>Create slide</h1>
-            <div className="create-slide__create__container">
-              <form className="" onSubmit={handleSubmit}>
-                <div className="form__row">
-                  <label htmlFor="title" className="form__label">
-                    Title:
-                  </label>
-                  <input type="text" name="slideTitle" className="form__input" onChange={handleChange} value={slide.slideTitle} />
-                </div>
-                <div className="form__row">
-                  <label htmlFor="body" className="form__label">
-                    Body
-                  </label>
-                  <textarea type="text" name="slideBody" className="form__input form__body" onChange={handleChange} value={slide.slideBody} />
-                </div>
-                <div className="form__row">
-                  <label htmlFor="image" className="form__label">
-                    Image
-                  </label>
-                  <input type="file" id="image" accept="image/*" onChange={handleImageUpload} />
-                </div>
+      <h1>Presentation: {presentation.title}</h1>
+      <div className="create-slide">
+        <div className="create-slide__create">
+          <h1>Create slide</h1>
+          <div>
+            <form className="" onSubmit={handleSubmit}>
+              <div className="form__row">
+                <label htmlFor="title" className="form__label">
+                  Title:
+                </label>
+                <input type="text" name="slideTitle" className="form__input" onChange={handleChange} value={slide.slideTitle} />
+              </div>
+              <div className="form__row">
+                <label htmlFor="body" className="form__label">
+                  Body
+                </label>
+                <textarea type="text" name="slideBody" className="form__input form__body" onChange={handleChange} value={slide.slideBody} />
+              </div>
+              <div className="form__row">
+                <label htmlFor="image" className="form__label">
+                  Image
+                </label>
+                <input type="file" id="image" accept="image/*" onChange={handleImageUpload} />
+              </div>
 
-                <button type="submit" className="btn btn__block btn-create-slide">
-                  Submit
-                </button>
-              </form>
-            </div>
+              <button type="submit" className="btn btn__block btn-create-slide">
+                Submit
+              </button>
+            </form>
           </div>
-          <div className="create-slide__name">
-            <h1>Slides</h1>
-            {slides.length > 0 &&
-              slides.map(slide => {
-                return (
-                  <li>
-                    <Link to={`/presentation/${id}/slide-view/${slide._id}`} key={slide._id}>
-                      {slide.slideTitle}
-                    </Link>
-                  </li>
-                );
-              })}
-          </div>
+        </div>
+        <div className="create-slide__name">
+          <h1>Slides</h1>
+          {slides.length > 0 &&
+            slides.map(slide => {
+              return (
+                <li key={slide._id}>
+                  <Link to={`/presentation/${id}/slide-view/${slide._id}`} key={slide._id}>
+                    {slide.slideTitle}
+                  </Link>
+                </li>
+              );
+            })}
         </div>
       </div>
     </Page>

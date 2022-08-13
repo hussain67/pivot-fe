@@ -24,7 +24,8 @@ function App() {
   const [socket, setSocket] = useState();
 
   useEffect(() => {
-    const socket = io.connect("http://localhost:9090");
+    //const socket = io.connect("http://localhost:9090");
+    socket = io.connect("https://pivot-be.herokuapp.com");
     setSocket(socket);
   }, []);
 

@@ -2,10 +2,8 @@
   height: calc(100vh - 385px);
   //nomeNave 120px + page 20 * 2 + 25 + 100*2
   margin-top: 2rem;
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
+  text-align: center;
+
   &__info {
     color: #3b82f6;
     height: 25px;
@@ -14,22 +12,31 @@
   }
   &__running {
     display: flex;
-    width: 50%;
+    max-width: 440px;
+    margin: 0 auto;
     justify-content: center;
     align-items: center;
   }
   &__img img {
-    width: 100px;
+    width: 70px;
     height: auto;
+    @include atMedium {
+      width: 100px;
+    }
   }
   &__result {
     display: grid;
-    justify-items: center;
-    row-gap: 1.5rem;
-    margin-bottom: 1.5rem;
-
+    place-content: center;
+    &__container {
+      display: grid;
+      justify-items: center;
+      row-gap: 1.5rem;
+      width: 100%;
+      max-width: 500px;
+    }
     h2 {
       color: #3b82f6;
+      max-width: 95%;
     }
   }
   &__count {

@@ -8,7 +8,7 @@ const PollChart = ({ chartData }) => {
   };
   return (
     <div>
-      <Chart chartType="PieChart" data={chartData} options={options} width={"400px"} height={"400px"} />
+      <Chart chartType="PieChart" data={chartData} options={options} width={"370px"} height={"370px"} />
     </div>
   );
 };

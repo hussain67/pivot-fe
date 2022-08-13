@@ -24,18 +24,15 @@ export const loginUser = async (email, password) => {
       return response.data.user;
     }
   } catch (error) {
-    console.log(error.response);
     toast.error(error.response.data.msg);
   }
 };
 export const logoutUser = async () => {
   try {
     const response = await Axios.post("api/v1/auth/logout");
-    // console.log(response.data);
     toast.success(response.data.msg);
     return response.data.msg;
   } catch (error) {
-    //console.log(error.response);
     toast.error(error.response.data.msg);
   }
 };
@@ -48,5 +45,3 @@ export const getInfo = async () => {
     console.log(error);
   }
 };
-
-//export default pivotApi;

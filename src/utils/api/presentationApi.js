@@ -1,21 +1,20 @@
 import Axios from "axios";
-import { toast } from "react-toastify";
+//import { toast } from "react-toastify";
 
 export const createPresentation = async title => {
   try {
-    const response = await Axios.post("/api/v1/presentations", { title });
-    //console.log(response.data);
-    toast.success(`Presentation ${response.data.title} created`);
+    const response = await Axios.post("/api/v1/presentations/create", { title });
+    //toast.success(`Presentation ${response.data.title} created`);
     return response.data;
   } catch (error) {
-    toast.error(error.response.data.msg);
+    // toast.error(error.response.data.msg);
+    console.log(error.response.data.msg);
   }
 };
 
 export const getPresentationById = async id => {
   try {
     const response = await Axios.get(`/api/v1/presentations/${id}`);
-    // console.log(response.data);
     return response.data;
   } catch (error) {
     console.log(error);
@@ -25,11 +24,9 @@ export const getPresentationById = async id => {
 export const getAllPresentations = async () => {
   try {
     const response = await Axios.get("/api/v1/presentations");
-    //console.log(response.data);
     return response.data;
   } catch (error) {
     console.log(error.response);
-    //return error.response.data;
   }
 };
 export const editPresentationById = async (id, title) => {
