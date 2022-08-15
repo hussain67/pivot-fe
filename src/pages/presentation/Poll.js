@@ -45,7 +45,7 @@ const Poll = ({ socket }) => {
         return !showResult;
       });
     }
-  }, [pollEnded, yesCount, noneCount, noneCount, socket]);
+  }, [pollEnded, yesCount, noCount, noneCount, totalCount, presentationTitle]);
 
   useEffect(() => {
     if (socket) {
