@@ -21,6 +21,7 @@ export const loginUser = async (email, password) => {
 
     if (response.data.user) {
       toast.success(`Wellcome back ${response.data.user.name}`);
+      console.log(response.data.user);
       return response.data.user;
     }
   } catch (error) {

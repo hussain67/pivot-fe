@@ -1,4 +1,5 @@
 import "./App.css";
+import Axios from "axios";
 import React, { useEffect, useState } from "react";
 import io from "socket.io-client";
 
@@ -11,21 +12,17 @@ import ProtectedRoute from "./pages/ProtectedRoutes";
 import Poll from "./pages/presentation/Poll";
 import("./styles/main.scss");
 
-/*
-let socket = io.connect("https://rhs-pivot-backend.herokuapp.com");
+Axios.defaults.baseURL = "https://pivot-be.herokuapp.com";
 
-if (!process.env.NODE_ENV || process.env.NODE_ENV === "development") {
-  socket = io.connect("http://localhost:9090");
-} else {
-  socket = io.connect("https://rhs-pivot-backend.herokuapp.com");
-}
-*/
+// For Heroku back end ned 1. Axios.defaults.baseURL 2. Socket connection
+
 function App() {
   const [socket, setSocket] = useState();
 
   useEffect(() => {
-    //const socket = io.connect("http://localhost:9090");
-    socket = io.connect("https://pivot-be.herokuapp.com");
+    const socket = io.connect("https://pivot-be.herokuapp.com");
+    // const socket = io.connect("http://localhost:9090");
+
     setSocket(socket);
   }, []);
 
