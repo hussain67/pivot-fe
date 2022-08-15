@@ -17,14 +17,12 @@ function HomeMain({ socket }) {
 
   useEffect(() => {
     let mounted = true;
-    console.log("First Mount");
     getScheduleParticipant().then(schedule => {
       if (mounted) {
         setSchedule(schedule);
       }
     });
     return () => {
-      console.log("Cleanup schedule");
       mounted = false;
     };
   }, []);

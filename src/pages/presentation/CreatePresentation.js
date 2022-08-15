@@ -12,7 +12,6 @@ const CreatePresentation = () => {
   const [presentations, setPresentations] = useState([]);
   const [isEdit, setIsEdit] = useState(false);
   const [idEdit, setIdEdit] = useState("");
-  //const [presentationName, setPresentationName] = useState(null);
 
   const handleChange = e => {
     setInput(e.target.value);
@@ -24,7 +23,6 @@ const CreatePresentation = () => {
       createPresentation(input).then(presentation => {
         if (presentation) {
           addItemToLocalStorage("presentationName", presentation.title);
-          // setPresentationName(presentation);
           setPresentations([...presentations, presentation]);
         }
       });

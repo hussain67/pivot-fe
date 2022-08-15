@@ -43,8 +43,8 @@ const JoinPresentation = ({ socket }) => {
         setPollStarted(true);
       });
     }
+    //"Cleanup Socket"
     return () => {
-      console.log("Cleanup Socket");
       mount = false;
     };
   }, [socket, presentationName, navigate]);

@@ -39,7 +39,6 @@ const Slides = () => {
   const handleSubmit = e => {
     e.preventDefault();
     createSlide(id, slide).then(slideId => {
-      // console.log(slideId);
       if (slide) {
         setSlide(initialState);
         navigate(`/presentation/${id}/slide-view/${slideId}`);
