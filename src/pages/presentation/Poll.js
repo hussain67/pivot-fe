@@ -17,7 +17,7 @@ const Poll = ({ socket }) => {
   const [noneCount, setNoneCount] = useState(0);
   const [pollEnded, setPollEnded] = useState(false);
   const [showResult, setShowResult] = useState(false);
-  const room = presentationTitle.trim().toLocaleLowerCase();
+
   const poolQuestion = "Amazon rain forest is in danger ? ";
 
   useEffect(() => {
@@ -34,12 +34,12 @@ const Poll = ({ socket }) => {
     }, 10000);
   }, []);
 
-  const processResult = () => {
-    chartData.push(["yes", yesCount], ["no", noCount], ["none", noneCount]);
-    socket.emit("poll-result", { chartData, totalCount, room: presentationTitle.toLowerCase() });
-  };
   useEffect(() => {
     if (pollEnded) {
+      const processResult = () => {
+        chartData.push(["yes", yesCount], ["no", noCount], ["none", noneCount]);
+        socket.emit("poll-result", { chartData, totalCount, room: presentationTitle.toLowerCase() });
+      };
       processResult();
       setShowResult(showResult => {
         return !showResult;

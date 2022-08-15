@@ -1,4 +1,3 @@
-import React, { useState } from "react";
 import pivot_logo from "../img/pivot.logo.jpg";
 import { useContext } from "react";
 import { userContext } from "../context/userContext";
@@ -18,7 +17,7 @@ const SmallSidebar = () => {
         <button className="btn-small-sidebar-close" onClick={toggleSidebar}>
           <FaTimes />
         </button>
-        <img src={pivot_logo}></img>
+        <img src={pivot_logo} alt="pivot logo"></img>
         <NavLinks toggleSidebar={toggleSidebar} />
       </div>
     </div>

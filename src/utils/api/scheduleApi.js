@@ -1,5 +1,5 @@
 import Axios from "axios";
-import { toast } from "react-toastify";
+//import { toast } from "react-toastify";
 
 export const createSchedule = async ({ title, id, time }) => {
   try {
@@ -29,7 +29,7 @@ export const getSchedulePresenter = async () => {
 export const removeScheduleById = async id => {
   try {
     const response = await Axios.delete(`/api/v1/schedule/${id}`);
- 
+
     return response.data.status;
   } catch (error) {
     console.log(error.response.data);

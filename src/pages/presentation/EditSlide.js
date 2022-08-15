@@ -1,6 +1,6 @@
 import React from "react";
 import { useEffect, useState } from "react";
-import { useNavigate, useParams, Link } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import Page from "../../components/Page";
 import { updateSlideById, getSlideById, uploadSlideImage } from "../../utils/api/presentationApi";
 
