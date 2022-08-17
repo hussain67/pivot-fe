@@ -17,7 +17,7 @@ export const registerUser = async (name, email, password) => {
 
 export const loginUser = async (email, password) => {
   try {
-    const response = await Axios.post("api/v1/auth/login", { email, password });
+    const response = await Axios.post("/api/v1/auth/login", { email, password });
 
     if (response.data.user) {
       toast.success(`Wellcome back ${response.data.user.name}`);
@@ -30,7 +30,7 @@ export const loginUser = async (email, password) => {
 };
 export const logoutUser = async () => {
   try {
-    const response = await Axios.post("api/v1/auth/logout");
+    const response = await Axios.post("/api/v1/auth/logout");
     toast.success(response.data.msg);
     return response.data.msg;
   } catch (error) {
