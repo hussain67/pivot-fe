@@ -1,5 +1,6 @@
 import Axios from "axios";
 import { toast } from "react-toastify";
+import { addItemToLocalStorage } from "../localstorage";
 
 export const registerUser = async (name, email, password) => {
   try {
@@ -9,6 +10,8 @@ export const registerUser = async (name, email, password) => {
       password
     });
     toast.success(`Hello there ${response.data.user.name}`);
+
+    addItemToLocalStorage("token", response.data.token);
     return response.data.user;
   } catch (error) {
     toast.error(error.response.data.msg);
@@ -17,12 +20,13 @@ export const registerUser = async (name, email, password) => {
 
 export const loginUser = async (email, password) => {
   try {
-    const response = await Axios.post("/api/v1/auth/login", { email, password });
+    const { data } = await Axios.post("/api/v1/auth/login", { email, password });
 
-    if (response.data.user) {
-      toast.success(`Wellcome back ${response.data.user.name}`);
-      console.log(response.data.user);
-      return response.data.user;
+    if (data.user) {
+      toast.success(`Wellcome back ${data.user.name}`);
+
+      addItemToLocalStorage("token", data.token);
+      return data.user;
     }
   } catch (error) {
     toast.error(error.response.data.msg);

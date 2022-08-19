@@ -12,17 +12,23 @@ import ProtectedRoute from "./pages/ProtectedRoutes";
 import Poll from "./pages/presentation/Poll";
 import("./styles/main.scss");
 
-Axios.defaults.baseURL = "https://pivot-be.herokuapp.com";
+let url;
 
+if (process.env.NODE_ENV === "production") {
+  url = "https://pivot-be.herokuapp.com";
+} else {
+  url = "http://localhost:9090";
+}
+
+Axios.defaults.baseURL = url;
+// ||
 // For Heroku back end ned 1. Axios.defaults.baseURL 2. Socket connection
 
 function App() {
   const [socket, setSocket] = useState();
 
   useEffect(() => {
-    const socket = io.connect("https://pivot-be.herokuapp.com");
-    // const socket = io.connect("http://localhost:9090");
-
+    const socket = io.connect(url);
     setSocket(socket);
   }, []);
 
