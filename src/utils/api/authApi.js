@@ -36,6 +36,7 @@ export const logoutUser = async () => {
   try {
     const response = await Axios.post("/api/v1/auth/logout");
     toast.success(response.data.msg);
+    //console.log(response.data.msg);
     return response.data.msg;
   } catch (error) {
     toast.error(error.response.data.msg);

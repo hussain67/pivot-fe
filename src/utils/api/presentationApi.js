@@ -72,8 +72,8 @@ export const uploadSlideImage = async formData => {
 export const createSlide = async (id, slide) => {
   try {
     const response = await Axios.post(`/api/v1/presentations/${id}/slides`, slide, authorizationHeader());
-    // console.log(response.data);
-    return response.data;
+    //console.log(response.data);
+    return response.data.slideId;
   } catch (error) {
     console.log(error);
   }
@@ -111,7 +111,7 @@ export const getAllSlides = async id => {
   try {
     const response = await Axios.get(`/api/v1/presentations/${id}/slides`, authorizationHeader());
     // console.log(response);
-    return response.data;
+    return response.data.slides;
   } catch (error) {
     return error.response.status;
   }

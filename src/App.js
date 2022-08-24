@@ -21,8 +21,6 @@ if (process.env.NODE_ENV === "production") {
 }
 
 Axios.defaults.baseURL = url;
-// ||
-// For Heroku back end ned 1. Axios.defaults.baseURL 2. Socket connection
 
 function App() {
   const [socket, setSocket] = useState();
