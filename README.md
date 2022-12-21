@@ -1,38 +1,35 @@
-# Pivot
+# Pivot App
 
-Pivot questions are diagnostic questions during a presentation that allow presenters to identify misconceptions. Pivot allows a presenter to attach response data to Google slides so that audience can vote and receive feedback.
-https://pivot-fe-presenter.netlify.app/presentations/gtc4
-
-# Important Note -
-
-This app is part of Pivot google plugin which is not published yet at market place. So you can't test this app stand alone. This app requires code from three different repositories. Please check Backend Repo's read me file first. We have tried to give details about plugin installation which can run locally. But you will need google developer account for that.
-
-## Pivot-Frontend-Teacher
-
-The teacher frontend allows for viewing of the original presentation slides as static images and control of polling.
-The teacher can display the total results on the board.
+Using pivot app, a presentation can be created and displayed it online without using any additional programme. At the end of the presentation, a question can be shared to receive participant's openion. The participnts can select their choice from the given options. Results of the pool can be shared in graphical form.
 
 ### Repos
 
-- https://github.com/roshnig/pivot-backend.git (backend)
-- https://github.com/roshnig/pivot-frontend-teacher.git (teacher)
-- https://github.com/isle88/pivot-frontend (student)
+- https://github.com/hussain67/pivot-fe --frontend
+- https://github.com/hussain67/pivot-be --backend
 
 ### Hosted version
 
-- https://rhs-pivot-backend.herokuapp.com/ (backend)
-- https://pivot-fe-presenter.netlify.app (teacher)
-- https://pivot-fe.netlify.app/ (student)
+- https://pivot-pro.netlify.app/ --frontend
+- https://pivot-be.herokuapp.com/ --backend
 
-### Install
+## Pivot-Frontend
 
-You will require to install below
+### Description
 
-- npm i react-router-dom
-- npm i axios
-- npm i socket.io-client
-- npm i @mui/material @emotion/react @emotion/styled
-- npm i @mui/icons-material
-- npm i qrcode.react
-- npm i --save react-google-charts
-  "proxy": "http://localhost:9090"
+The frontend allows for viewing of presentation.
+
+To create presentation, a presenter need to register and login to the app.
+
+A participant can join the presentation by providing a user name.
+
+### Technicals
+
+This frontend was developed using react, HTML5, CSS3. Packages such as react-router-dom, react-icons, react-toastify, react-google-charts, moment, react-daytime-picker, material-ui, axios, SCSS and socket.io-client were also used.
+
+### How to run this app locally
+
+- Clone the app to your local machine from frontend github repo.
+- Run the command npm install. This will install necessary packages included in `package.json` file.
+- Clone and install pivot-be to your local machine
+- Start the backend server with the command `npm run dev`
+- Start the frontend with the command `npm start`
