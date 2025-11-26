@@ -1,5 +1,4 @@
 import "./App.css";
-import Axios from "axios";
 import React, { useEffect, useState } from "react";
 import io from "socket.io-client";
 
@@ -10,25 +9,17 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import ProtectedRoute from "./pages/ProtectedRoutes";
 import Poll from "./pages/presentation/Poll";
+import { url } from "./utils/api/axios";
 import("./styles/main.scss");
-
-let url;
-
-if (process.env.NODE_ENV === "production") {
-	url = "https://pivot-be.onrender.com";
-} else {
-	url = "http://localhost:9090";
-}
-
-Axios.defaults.baseURL = url;
 
 function App() {
 	const [socket, setSocket] = useState();
+	console.log(socket);
 
 	useEffect(() => {
 		const socket = io.connect(url);
 		setSocket(socket);
-	}, []);
+	}, [socket?.id]);
 
 	return (
 		<BrowserRouter>
