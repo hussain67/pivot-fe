@@ -14,17 +14,19 @@ function HomeMain({ socket }) {
 	const [joiningPresentation, setJoiningPresentation] = useState(false);
 	const [showLogin, setShowLogin] = useState(false);
 	const room = presentationName.trim().toLowerCase();
-
+	const [isLoading, setIsLoading] = useState(false);
+	const [error, setError] = useState("");
+	console.log(error);
 	useEffect(() => {
-		// let mounted = true;
-		getScheduleParticipant().then(schedule => {
-			// if (mounted) {
-			setSchedule(schedule);
-			// }
-		});
-		// return () => {
-		//   mounted = false;
-		// };
+		setIsLoading(true);
+		getScheduleParticipant()
+			.then(schedule => {
+				setSchedule(schedule);
+			})
+			.catch(() => setError("Schedule could not be loaded"))
+			.finally(() => {
+				setIsLoading(false);
+			});
 	}, []);
 
 	const handleSubmit = e => {
@@ -45,11 +47,16 @@ function HomeMain({ socket }) {
 					{!joiningPresentation && (
 						<>
 							<h2 className="home-main__left-title">Scheduled Presentations</h2>
-							<PresentationSchedule
-								schedule={schedule}
-								setPresentationName={setPresentationName}
-								setJoiningPresentation={setJoiningPresentation}
-							/>
+
+							{isLoading && <h1>Loading...</h1>}
+							{schedule && (
+								<PresentationSchedule
+									schedule={schedule}
+									setPresentationName={setPresentationName}
+									setJoiningPresentation={setJoiningPresentation}
+								/>
+							)}
+							{error && <p>{error}</p>}
 						</>
 					)}
 

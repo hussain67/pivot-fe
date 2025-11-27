@@ -5,24 +5,15 @@ export const createSchedule = async ({ title, id, time }) => {
 		const response = await apiClient.post("api/v1/schedule", { title, id, time }, authorizationHeader());
 
 		return response.data.schedule;
-	} catch (error) {
-		// console.log("request", error.request);
-		// console.log("message", error.message);
-		// console.log("message", error.response);
-	}
+	} catch (error) {}
 };
 
 export const getScheduleParticipant = async () => {
-	try {
-		const response = await apiClient.get("api/v1/schedule/participant");
-		return response.data;
-	} catch (error) {
-		// console.log(error);
-		// console.log("request", error.request);
-		// console.log("message", error.message);
-		// console.log("response", error.response);
-	}
+	const response = await apiClient.get("api/v1/schedule/participant");
+	console.log(response);
+	return response.data;
 };
+
 export const getSchedulePresenter = async () => {
 	//const token = getItemFromLocalStorage("token");
 	try {

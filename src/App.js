@@ -14,17 +14,21 @@ import("./styles/main.scss");
 
 function App() {
 	const [socket, setSocket] = useState();
-	console.log(socket);
+	// console.log(socket);
 
 	useEffect(() => {
 		const socket = io.connect(url);
 		setSocket(socket);
-	}, [socket?.id]);
+	}, []);
 
 	return (
 		<BrowserRouter>
 			<div className="App">
 				<Routes>
+					<Route
+						path="/"
+						element={<Home socket={socket} />}
+					/>
 					<Route
 						path="/presentation"
 						element={
@@ -59,10 +63,7 @@ function App() {
 							element={<EditSlide />}
 						/>
 					</Route>
-					<Route
-						path="/"
-						element={<Home socket={socket} />}
-					></Route>
+
 					<Route
 						path="/presentation-display/:presentationTitle/:presentationId"
 						element={<DisplayPresentation socket={socket} />}

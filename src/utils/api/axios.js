@@ -8,24 +8,26 @@ if (process.env.NODE_ENV === "production") {
 	url = "http://localhost:9090";
 }
 
-// axios.defaults.baseURL = url;
-
 export const apiClient = axios.create({
-	baseURL: url
+	baseURL: url,
+	timeout: 5000
 });
 
 apiClient.interceptors.response.use(
-	response => response,
+	response => {
+		return response;
+	},
 	error => {
-		if (!error.response) {
+		if (error.request && !error.response) {
 			console.error("Global Network Error:", error);
-			throw new Error("Server unreachable");
+			console.log("Error", error);
+
+			Promise.reject(error.message);
 		} else {
-			console.error("Global Error:", error.response.status);
+			console.error("Server error:", error);
+			throw new Error(error.response.status);
 		}
 
-		console.log("message", error.message);
-		// console.log("response", error.response);
-		return Promise.reject(error);
+		throw new Error("Something went wrong");
 	}
 );

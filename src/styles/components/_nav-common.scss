@@ -1,32 +1,33 @@
 .nav-common {
-  height: 100px;
-  margin-bottom: 3rem;
-  text-align: center;
-  font-size: 0.9rem;
-  @media screen and (min-width: 992px) {
-    display: flex;
-    column-gap: 1rem;
-    justify-content: flex-start;
-    align-items: center;
-    margin-left: 4rem;
-    margin-bottom: 5rem;
-  }
-  &-logo {
-    width: 60px;
-    height: 60px;
-    border-radius: 5px;
+	height: 100px;
+	margin-bottom: 3rem;
+	text-align: center;
+	font-size: 0.9rem;
+	width: 100vw;
+	@media screen and (min-width: 992px) {
+		display: flex;
+		column-gap: 1rem;
+		justify-content: flex-start;
+		align-items: center;
+		margin-left: 4rem;
+		margin-bottom: 5rem;
+	}
+	&-logo {
+		width: 60px;
+		height: 60px;
+		border-radius: 5px;
 
-    @include atLarge {
-      width: 80px;
-      height: 80px;
-    }
-  }
-  &__banner {
-    color: #0f7acbe7;
-    margin-top: 15px;
-    margin-bottom: 25px;
-    @include atLarge {
-      margin-top: 0;
-    }
-  }
+		@include atLarge {
+			width: 80px;
+			height: 80px;
+		}
+	}
+	&__banner {
+		color: #0f7acbe7;
+		margin-top: 15px;
+		margin-bottom: 25px;
+		@include atLarge {
+			margin-top: 0;
+		}
+	}
 }
