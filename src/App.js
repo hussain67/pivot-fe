@@ -2,11 +2,12 @@ import "./App.css";
 
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
-import { Stats, Profile, EditSlide, ViewSingleSlide, CreatePresentation, DisplayPresentation, CreateSlide, SharedLayout, JoinPresentation } from "./pages/presentation";
+import Presentation from "./pages/Presentation";
+import { Stats, Profile, EditSlide, ViewSingleSlide, CreatePresentation, DisplayPresentation, CreateSlide, JoinPresentation } from "./features/presentation";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import ProtectedRoute from "./components/ProtectedRoutes";
-import Poll from "./pages/presentation/Poll";
+import Poll from "./features/presentation/Poll";
 import AuthPage from "./pages/AuthPage";
 import("./styles/main.scss");
 
@@ -23,7 +24,7 @@ function App() {
 						path="/presentation"
 						element={
 							<ProtectedRoute>
-								<SharedLayout />
+								<Presentation />
 							</ProtectedRoute>
 						}
 					>
