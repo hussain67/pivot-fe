@@ -1,5 +1,5 @@
 import "./App.css";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import io from "socket.io-client";
 
 import { BrowserRouter, Routes, Route } from "react-router-dom";
@@ -7,7 +7,7 @@ import Home from "./pages/Home";
 import { Stats, Profile, EditSlide, ViewSingleSlide, CreatePresentation, DisplayPresentation, CreateSlide, SharedLayout, JoinPresentation } from "./pages/presentation";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import ProtectedRoute from "./pages/ProtectedRoutes";
+import ProtectedRoute from "./components/ProtectedRoutes";
 import Poll from "./pages/presentation/Poll";
 import { url } from "./utils/api/axios";
 import AuthPage from "./pages/AuthPage";

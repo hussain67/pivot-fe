@@ -1,7 +1,7 @@
-import Participant from "../features/user/Participant";
-import Presenter from "../features/user/Presenter";
+import Participant from "./Participant";
+import Presenter from "./Presenter";
 
-function HomeMain({ socket }) {
+function Users({ socket }) {
 	return (
 		<>
 			<div className="home-main">
@@ -16,4 +16,4 @@ function HomeMain({ socket }) {
 	);
 }
 
-export default HomeMain;
+export default Users;
