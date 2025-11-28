@@ -1,45 +1,46 @@
 .home-main {
-  margin: 0 auto;
+	margin: 0 auto;
 
-  background-color: var($color-background-silver);
-  @include atSmall {
-    padding-left: 3rem;
-    padding-right: 3rem;
-  }
-  @include atLarge {
-    display: grid;
-    column-gap: 3rem;
-    justify-content: space-evenly;
-    grid-template-columns: 1fr 1fr;
-    padding-left: 0;
-    padding-right: 0rem;
-  }
+	background-color: var($color-background-silver);
+	@include atSmall {
+		padding-left: 3rem;
+		padding-right: 3rem;
+	}
+	@include atLarge {
+		display: grid;
+		column-gap: 3rem;
+		justify-content: space-evenly;
+		grid-template-columns: 1fr 1fr;
+		padding-left: 0;
+		padding-right: 0rem;
+	}
 }
 
 .home-hero img {
-  width: 300px;
-  height: auto;
+	width: 200px;
+	height: auto;
+	margin-bottom: 1.5rem;
 }
 
 .home-main__left-title {
-  text-align: center;
-  color: #3b82f6;
-  margin-bottom: 1.5rem;
-  padding-top: 15px;
-  //margin-top: 1.5rem;
-  @include atSmall {
-    padding-top: 0px;
-  }
-  @include atLarge {
-    margin-bottom: 2rem;
-  }
+	text-align: center;
+	color: #3b82f6;
+	margin-bottom: 1.5rem;
+	padding-top: 15px;
+	//margin-top: 1.5rem;
+	@include atSmall {
+		padding-top: 0px;
+	}
+	@include atLarge {
+		margin-bottom: 2rem;
+	}
 }
 .home-hero-banner {
-  text-align: left;
+	text-align: left;
 }
 .home-hero-info {
-  font-weight: 400;
-  font-size: 20px;
-  padding-top: 15px;
-  padding-bottom: 15px;
+	font-weight: 400;
+	font-size: 20px;
+	padding-top: 15px;
+	padding-bottom: 15px;
 }

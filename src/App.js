@@ -10,6 +10,7 @@ import "react-toastify/dist/ReactToastify.css";
 import ProtectedRoute from "./pages/ProtectedRoutes";
 import Poll from "./pages/presentation/Poll";
 import { url } from "./utils/api/axios";
+import AuthPage from "./pages/AuthPage";
 import("./styles/main.scss");
 
 function App() {
@@ -63,6 +64,10 @@ function App() {
 							element={<EditSlide />}
 						/>
 					</Route>
+					<Route
+						path="/auth"
+						element={<AuthPage />}
+					/>
 
 					<Route
 						path="/presentation-display/:presentationTitle/:presentationId"
