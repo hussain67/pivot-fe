@@ -1,12 +1,12 @@
 import Participant from "./Participant";
 import Presenter from "./Presenter";
 
-function Users({ socket }) {
+function Users() {
 	return (
 		<>
 			<div className="home-main">
 				<div className="home-main__left">
-					<Participant socket={socket} />
+					<Participant />
 				</div>
 				<div className="home-main__right">
 					<Presenter />

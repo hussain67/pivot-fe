@@ -1,10 +1,13 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-function JoinPresentation({ socket, presentationName }) {
+import { useSocket } from "../../context/socketContext";
+
+function JoinPresentation({ presentationName }) {
 	const navigate = useNavigate();
 	const [username, setUsername] = useState("");
 	const [usernameExists, setUsernameExists] = useState(false);
 	const room = presentationName.trim().toLowerCase();
+	const { socket } = useSocket();
 
 	const handleSubmit = e => {
 		e.preventDefault();

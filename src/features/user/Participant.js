@@ -3,7 +3,7 @@ import JoinPresentation from "./JoinPresentation";
 import SelectPresentation from "./SelectPresentation";
 
 // Main function
-function Participant({ socket }) {
+function Participant() {
 	const [presentationName, setPresentationName] = useState("");
 
 	const [isSelectedPresentation, setIsSelectedPresentation] = useState(false);
@@ -18,12 +18,7 @@ function Participant({ socket }) {
 				/>
 			)}
 
-			{isSelectedPresentation && (
-				<JoinPresentation
-					socket={socket}
-					presentationName={presentationName}
-				/>
-			)}
+			{isSelectedPresentation && <JoinPresentation presentationName={presentationName} />}
 		</>
 	);
 }

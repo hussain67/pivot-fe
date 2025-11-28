@@ -1,6 +1,4 @@
 import "./App.css";
-import { useEffect, useState } from "react";
-import io from "socket.io-client";
 
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
@@ -9,26 +7,17 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import ProtectedRoute from "./components/ProtectedRoutes";
 import Poll from "./pages/presentation/Poll";
-import { url } from "./utils/api/axios";
 import AuthPage from "./pages/AuthPage";
 import("./styles/main.scss");
 
 function App() {
-	const [socket, setSocket] = useState();
-	// console.log(socket);
-
-	useEffect(() => {
-		const socket = io.connect(url);
-		setSocket(socket);
-	}, []);
-
 	return (
 		<BrowserRouter>
 			<div className="App">
 				<Routes>
 					<Route
 						path="/"
-						element={<Home socket={socket} />}
+						element={<Home />}
 					/>
 					<Route
 						path="/presentation"
@@ -71,15 +60,15 @@ function App() {
 
 					<Route
 						path="/presentation-display/:presentationTitle/:presentationId"
-						element={<DisplayPresentation socket={socket} />}
+						element={<DisplayPresentation />}
 					/>
 					<Route
 						path="/join-presentation/:username/:presentationName"
-						element={<JoinPresentation socket={socket} />}
+						element={<JoinPresentation />}
 					></Route>
 					<Route
 						path="/presentation-poll/:presentationTitle/:presentationId"
-						element={<Poll socket={socket} />}
+						element={<Poll />}
 					/>
 
 					<Route
