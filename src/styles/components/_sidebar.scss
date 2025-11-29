@@ -1,54 +1,57 @@
 .sidebar-small {
-  @media screen and(min-width:992px) {
-    display: none;
-  }
-  background-color: $color-background-list;
-  position: fixed;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  width: 0px;
+	@media screen and(min-width:992px) {
+		display: none;
+	}
+	background-color: $color-background-list;
+	position: fixed;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	width: 0px;
+	padding-top: 100px;
 
-  z-index: -1;
-  opacity: 0;
-  transition: all 1.2s;
-  & img {
-    width: 100px;
-    height: auto;
-  }
-  &--show {
-    z-index: 99;
-    opacity: 1;
-    width: 75%;
-  }
+	z-index: -1;
+	opacity: 0;
+	transition: all 1.2s;
+	& img {
+		width: 100px;
+		height: auto;
+	}
+	&--show {
+		z-index: 99;
+		opacity: 1;
+		width: 35%;
+	}
 }
 
 .sidebar-big {
-  background-color: $color-background-list;
-  //position: relative;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  //width: 0px;
-  width: 200px;
-  opacity: 1;
-  z-index: 1;
-  transition: all 1.2s;
-  display: none;
-  & img {
-    width: 100px;
-    height: auto;
-  }
-  &__content {
-    padding-top: 25px;
-  }
-  @media screen and(min-width:992px) {
-    display: block;
+	background-color: $color-background-list;
+	padding-top: 100px;
 
-    &--hide {
-      width: 0px;
-      opacity: 0;
-      z-index: -1;
-    }
-  }
+	top: 0;
+	bottom: 0;
+	left: 0;
+	//width: 0px;
+	width: 200px;
+	opacity: 1;
+	z-index: 1;
+	transition: all 1.2s;
+	display: none;
+	& img {
+		width: 100px;
+		height: auto;
+	}
+	&__content {
+		padding-top: 25px;
+	}
+	@media screen and(min-width:992px) {
+		display: block;
+
+		&--hide {
+			width: 0px;
+
+			opacity: 0;
+			z-index: -1;
+		}
+	}
 }

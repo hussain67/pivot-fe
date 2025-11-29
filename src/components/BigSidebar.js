@@ -1,20 +1,12 @@
 import React from "react";
-import { useContext } from "react";
-import { userContext } from "../context/userContext";
+
 import NavLinks from "./NavLinks";
-import pivot_logo from "../img/pivot.logo.jpg";
 
-const BigSidebar = () => {
-	const { showSidebar } = useContext(userContext);
-
+const BigSidebar = ({ showSidebar, setShowSidebar, setText }) => {
 	return (
-		<div className={showSidebar ? "sidebar-big sidebar-big--hide" : "sidebar-big"}>
+		<div className={showSidebar ? "sidebar-big " : "sidebar-big sidebar-big--hide"}>
 			<div className="sidebar-big__content">
-				<img
-					src={pivot_logo}
-					alt="pivot logo"
-				></img>
-				<NavLinks />
+				<NavLinks setText={setText} />
 			</div>
 		</div>
 	);

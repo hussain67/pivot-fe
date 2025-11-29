@@ -7,7 +7,6 @@ const SocketContext = createContext();
 
 function SocketProvider({ children }) {
 	const [socket, setSocket] = useState();
-	console.log(socket);
 
 	useEffect(() => {
 		const socket = io.connect(url);

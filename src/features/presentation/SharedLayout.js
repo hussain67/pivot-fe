@@ -3,21 +3,31 @@ import { useState } from "react";
 import { Outlet } from "react-router-dom";
 import { BigSidebar, SmallSidebar } from "../../components";
 import NavPresenter from "../../components/NavPresenter";
-import { userContext } from "../../context/userContext";
 const SharedLayout = () => {
 	const [showSidebar, setShowSidebar] = useState(false);
+	const [text, setText] = useState("Stats");
 	return (
 		<section>
-			<userContext.Provider value={{ showSidebar, setShowSidebar }}>
-				<main className="dashboard">
-					<SmallSidebar />
-					<BigSidebar />
-					<div>
-						<NavPresenter />
-						<Outlet />
-					</div>
-				</main>
-			</userContext.Provider>
+			<article className="dashboard">
+				<SmallSidebar
+					showSidebar={showSidebar}
+					setShowSidebar={setShowSidebar}
+				/>
+				<BigSidebar
+					setText={setText}
+					showSidebar={showSidebar}
+					setShowSidebar={setShowSidebar}
+				/>
+				<div>
+					<NavPresenter
+						showSidebar={showSidebar}
+						setShowSidebar={setShowSidebar}
+						text={text}
+					/>
+					<Outlet />
+				</div>
+			</article>
+			{/* </userContext.Provider> */}
 		</section>
 	);
 };
